@@ -1,7 +1,7 @@
 {
-  "name": "moneo",
-  "version": "1.1.2",
-  "description": "Mongoose Neo4J plugin / middleware",
+  "name": "mongo4j",
+  "version": "0.1.0",
+  "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
   "main": "index.js",
   "scripts": {
     "test": "set NODE_ENV=test && nodemon --exec mocha",
@@ -12,22 +12,37 @@
     "mongodb",
     "neo4j",
     "plugin",
-    "middleware"
+    "middleware",
+    "mongo4j",
+    "moneo",
+    "polyglot",
+    "persistance",
+    "polyglot-persistance",
+    "mongo",
+    "neo",
+    "graph",
+    "graphdatabase",
+    "graphdb",
+    "documentstorage",
+    "document",
+    "databases",
+    "documentdb",
+    "hooks",
+    "tested"
   ],
   "bugs": {
-    "url": "https://github.com/srfrnk/moneo/issues",
-    "email": "srfrnk@gmail.com"
+    "url": "https://github.com/SvenWesterlaken/mongo4j/issues",
+    "email": "sven.westerlaken@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/srfrnk/moneo"
+    "url": "https://github.com/SvenWesterlaken/mongo4j"
   },
-  "author": "srfrnk@gmail.com",
+  "author": "Sven Westerlaken",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.5",
     "mongoose": "^5.0.9",
-    "neo4j": "~2.0.0-RC1",
     "neo4j-driver": "~1.5.3",
     "parse-neo4j": "^0.6.11"
   },
