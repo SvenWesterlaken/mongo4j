@@ -1,11 +1,8 @@
 const neo4j = require('../../lib/neo4j');
-const sinon = require('sinon');
 const chai = require('chai');
 const expect = chai.expect;
 
-chai.use(require('sinon-chai'));
-
-describe('Neo4J driver management', () => {
+describe("Neo4J driver management", () => {
 
   afterEach(() => neo4j.reset());
   after(() => neo4j.init(null, {user: 'neo4j', pass: 'new'}));
@@ -66,7 +63,4 @@ describe('Neo4J driver management', () => {
     expect(neo4j.drivers).to.be.an('array').with.a.lengthOf(2);
     expect(neo4j.driver).to.be.undefined;
   });
-
-  it()
-
 })
