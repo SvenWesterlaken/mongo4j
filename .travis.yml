@@ -1,0 +1,44 @@
+branches:
+  only:
+    - master
+    - /^.*travis.*$/
+
+  except:
+    - /^v\d+\.\d+\.\d+$/
+
+sudo: required
+dist: trusty
+group: deprecated-2017Q4
+
+language: node_js
+node_js:
+  - '9'
+  - '8'
+  - '6'
+  - '4'
+
+addons:
+  apt:
+    sources:
+      - sourceline: 'deb https://debian.neo4j.org/repo stable/'
+        key_url: 'https://debian.neo4j.org/neotechnology.gpg.key'
+    packages:
+      - neo4j
+
+services:
+  - mongodb
+
+cache:
+  directories:
+    - ~/.npm
+
+notifications:
+  email: false
+
+before_script:
+  - sleep 15
+
+after_success:
+  - npm run cover
+  - npm run coveralls
+  - npm run travis-deploy-once "npm run semantic-release"
