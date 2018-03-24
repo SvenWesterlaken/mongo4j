@@ -38,7 +38,9 @@ notifications:
 before_script:
   - sleep 15
 
-after_success:
+script:
   - npm run cover
+
+after_success:
   - npm run coveralls
   - npm run travis-deploy-once "npm run semantic-release"
