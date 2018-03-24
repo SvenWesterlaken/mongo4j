@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "set NODE_ENV=test && nodemon --exec mocha",
-    "cover": "set NODE_ENV=test && nyc --reporter=text mocha --recursive --exit",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "test-travis": "set NODE_ENV=test && mocha",
+    "cover": "set NODE_ENV=test && nyc mocha",
+    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
@@ -74,8 +75,7 @@
     "prepare": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
-      "@semantic-release/git",
-      "@semantic-release/github"
+      "@semantic-release/git"
     ]
   }
 }

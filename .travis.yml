@@ -38,8 +38,7 @@ before_script:
   - sleep 15
 
 script:
-  - npm run cover
+  - npm run test-travis
 
 after_success:
-  - npm run coveralls
-  - npm run travis-deploy-once "npm run semantic-release"
+  - npm run travis-deploy-once "npm run semantic-release && npm run coveralls"
