@@ -8,9 +8,9 @@
 [![npm](https://img.shields.io/npm/v/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
 [![GitHub release](https://img.shields.io/github/release/SvenWesterlaken/mongo4j.svg)](https://github.com/SvenWesterlaken/mongo4j)
 [![node](https://img.shields.io/node/v/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
+[![npm](https://img.shields.io/npm/dt/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
 
-
-<b style="font-size: 1.4em">**Currently in development**</b>
+<b style="font-size: 1.4em">Currently in development</b>
 
 ## Credits
 
