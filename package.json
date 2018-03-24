@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "set NODE_ENV=test && nodemon --exec mocha",
-    "cover": "set NODE_ENV=test && "
+    "cover": "set NODE_ENV=test && nyc --reporter=text mocha --recursive --exit",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "mongoose",
