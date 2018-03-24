@@ -1,5 +1,7 @@
 # Mongo4J
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/SvenWesterlaken/mongo4j.svg)](https://greenkeeper.io/)
+
 Currently in development
 
 ## Credits

@@ -2,6 +2,7 @@ branches:
   only:
     - master
     - /^.*travis.*$/
+    - /^greenkeeper/.*$/
 
   except:
     - /^v\d+\.\d+\.\d+$/
