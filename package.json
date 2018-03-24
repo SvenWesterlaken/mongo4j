@@ -1,0 +1,81 @@
+{
+  "name": "mongo4j",
+  "version": "0.0.0-development",
+  "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "set NODE_ENV=test && nodemon --exec mocha",
+    "test-travis": "set NODE_ENV=test && mocha",
+    "cover": "set NODE_ENV=test && nyc mocha",
+    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "keywords": [
+    "mongoose",
+    "mongodb",
+    "neo4j",
+    "plugin",
+    "middleware",
+    "mongo4j",
+    "moneo",
+    "polyglot",
+    "persistance",
+    "polyglot-persistance",
+    "mongo",
+    "neo",
+    "graph",
+    "graphdatabase",
+    "graphdb",
+    "documentstorage",
+    "document",
+    "databases",
+    "documentdb",
+    "hooks",
+    "tested"
+  ],
+  "bugs": {
+    "url": "https://github.com/SvenWesterlaken/mongo4j/issues",
+    "email": "sven.westerlaken@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SvenWesterlaken/mongo4j"
+  },
+  "author": "Sven Westerlaken",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "mongoose": "^5.0.9",
+    "neo4j-driver": "~1.5.3",
+    "parse-neo4j": "^0.6.11"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^2.0.1",
+    "@semantic-release/git": "^4.0.1",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-like": "^1.1.1",
+    "chai-things": "^0.2.0",
+    "coveralls": "^3.0.0",
+    "mocha": "^5.0.4",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.17.1",
+    "nyc": "^11.6.0",
+    "semantic-release": "^15.1.4",
+    "travis-deploy-once": "^4.4.1"
+  },
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
+  }
+}
