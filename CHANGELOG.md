@@ -1,3 +1,11 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/SvenWesterlaken/mongo4j/compare/v0.1.1...v0.1.2) (2018-05-08)
+
+
+### Bug Fixes
+
+* **package:** update neo4j-driver to version 1.6.1 ([6e59ca5](https://github.com/SvenWesterlaken/mongo4j/commit/6e59ca5))
+
 <a name="1.0.0"></a>
 # 1.0.0 (2018-03-24)
 
