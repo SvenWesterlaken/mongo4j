@@ -1,6 +1,6 @@
 {
   "name": "mongo4j",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
   "main": "index.js",
   "scripts": {
@@ -50,7 +50,7 @@
   "dependencies": {
     "lodash": "^4.17.5",
     "mongoose": "^5.0.9",
-    "neo4j-driver": "~1.5.3",
+    "neo4j-driver": "~1.6.1",
     "parse-neo4j": "^0.6.11"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "nodemon": "^1.17.1",
     "nyc": "^11.6.0",
     "semantic-release": "^15.1.4",
-    "travis-deploy-once": "^4.4.1"
+    "travis-deploy-once": "^5.0.0"
   },
   "release": {
     "verifyConditions": [
