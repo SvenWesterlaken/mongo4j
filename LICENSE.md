@@ -1,6 +1,5 @@
 The MIT License (MIT)
 
-Copyright (c) 2015 Srfrnk
 Copyright (c) 2018 SvenWesterlaken
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
