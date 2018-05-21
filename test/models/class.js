@@ -35,7 +35,7 @@ const ClassSchema = new Schema({
     students: [{
         type: mongoose.Schema.ObjectId,
         ref: 'Person',
-        neo_rel_name: 'Teaches'
+        neo_rel_name: 'Has Student'
     }],
     books: [BookSchema]
 });

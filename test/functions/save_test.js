@@ -5,7 +5,9 @@ chai.use(require('chai-things'));
 const Person = require('../models/person');
 const Class = require('../models/class');
 
-describe('Mongoose Saving', () => {
+const driver = require('../../lib/neo4j').getDriver();
+
+describe.only('Mongoose Saving', () => {
   const test_date = new Date('31 July 1999');
 
   it('Should save in Mongo', (done) => {
@@ -54,7 +56,23 @@ describe('Mongoose Saving', () => {
               year: 2018
             }]
           });
-          jack.save().then(() => done());
+          jack.save().then(() => {
+
+            const session = driver.session();
+
+            session.run('MATCH (n) RETURN count(n) AS count').then((response) => {
+              let count = 0;
+              response.records.forEach((record) => count = record.get('count').low);
+              session.close();
+
+              expect(count).to.equal(9);
+
+              done();
+            });
+
+
+
+          });
 
         });
 
