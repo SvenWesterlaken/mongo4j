@@ -3,6 +3,17 @@ const Schema = mongoose.Schema;
 
 const moneo = require('../../index.js');
 
+const BookSchema = new Schema({
+  title: {
+    type: String,
+    neo_prop: true
+  },
+  author: {
+    type: String,
+    neo_prop: true
+  }
+});
+
 const ClassSchema = new Schema({
     title: {
         type: String,
@@ -25,7 +36,8 @@ const ClassSchema = new Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Person',
         neo_rel_name: 'Teaches'
-    }]
+    }],
+    books: [BookSchema]
 });
 
 ClassSchema.plugin(moneo.plugin());

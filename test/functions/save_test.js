@@ -8,7 +8,6 @@ const Class = require('../models/class');
 describe('Mongoose Saving', () => {
   const test_date = new Date('31 July 1999');
 
-
   it('Should save in Mongo', (done) => {
       const neil = new Person({
         firstName: "Neil",
@@ -24,9 +23,6 @@ describe('Mongoose Saving', () => {
       const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
       const jason = new Person({firstName: "Jason", lastName: "Campbell"});
 
-
-
-
       Promise.all([neil.save(), Person.insertMany([daniel, jason, henry])]).then((result) => {
         const chemistry = new Class({
           title: 'Chemistry',
@@ -37,7 +33,15 @@ describe('Mongoose Saving', () => {
           },
           students: [
             result[1][0]._id,
-            result[1][1]._id]
+            result[1][1]._id
+          ],
+          books: [{
+            title: 'Organic Chemistry as a Second Language',
+            author: 'David Klein'
+          }, {
+            title: 'Chemistry: A Molecular Approach',
+            author: 'Nivaldo J. Tro'
+          }]
         });
         chemistry.save().then((result) => {
 
