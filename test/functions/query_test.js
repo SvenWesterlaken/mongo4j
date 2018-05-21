@@ -53,13 +53,13 @@ describe('Simple Cypher queries', () => {
         expect(result).to.be.a('promise');
         expect(Promise.all([
             expect(result).to.eventually.not.have.a.property('records'),
-            expect(result).to.eventually.to.be.an('array'),
+            expect(result).to.eventually.be.an('array'),
             expect(result).to.eventually.all.have.a.property('name'),
             expect(result).to.eventually.not.be.null
         ])).notify(done);
     });
 
-    it('Should return an subscription instead of promise', (done) => {
+    it('Should return a subscription instead of a promise', (done) => {
         const query = 'MATCH (n:Person) RETURN n;';
         const result = Person.cypherQuery(query, { sub: true });
 
