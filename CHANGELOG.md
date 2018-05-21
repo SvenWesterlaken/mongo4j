@@ -1,3 +1,16 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/SvenWesterlaken/mongo4j/compare/v0.1.2...v0.2.0) (2018-05-21)
+
+
+### Bug Fixes
+
+* **neo4j-save:** keep session open ([7051c19](https://github.com/SvenWesterlaken/mongo4j/commit/7051c19))
+
+
+### Features
+
+* **save:** add saving feature ([0f6c0f3](https://github.com/SvenWesterlaken/mongo4j/commit/0f6c0f3))
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/SvenWesterlaken/mongo4j/compare/v0.1.1...v0.1.2) (2018-05-08)
 
