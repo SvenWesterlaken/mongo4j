@@ -7,7 +7,7 @@ const Class = require('../models/class');
 
 const driver = require('../../lib/neo4j').getDriver();
 
-describe.only('Mongoose Saving', () => {
+describe('Mongoose Saving', () => {
   const test_date = new Date('31 July 1999');
 
   it('Should save in Mongo', (done) => {
