@@ -1,6 +1,6 @@
 {
   "name": "mongo4j",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
   "main": "index.js",
   "scripts": {
@@ -80,9 +80,19 @@
     "analyzeCommits": {
       "preset": "angular",
       "releaseRules": [
-        {"type": "doc", "scope": "README", "release": "patch"},
-        {"type": "refactor", "release": "patch"},
-        {"type": "major", "release": "major"}
+        {
+          "type": "doc",
+          "scope": "README",
+          "release": "patch"
+        },
+        {
+          "type": "refactor",
+          "release": "patch"
+        },
+        {
+          "type": "major",
+          "release": "major"
+        }
       ]
     },
     "prepare": [
