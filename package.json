@@ -77,6 +77,14 @@
       "@semantic-release/git",
       "@semantic-release/github"
     ],
+    "analyzeCommits": {
+      "preset": "angular",
+      "releaseRules": [
+        {"type": "doc", "scope": "README", "release": "patch"},
+        {"type": "refactor", "release": "patch"},
+        {"type": "major", "release": "major"}
+      ]
+    },
     "prepare": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
