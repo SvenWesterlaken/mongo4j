@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const neo4j = require('../lib/neo4j');
 
+const int = require('neo4j-driver').v1.int;
+
 const driver = neo4j.getDriver();
 
 const Person = require('./models/person');
@@ -29,3 +31,23 @@ after(() => {
   mongoose.disconnect();
   neo4j.close();
 });
+
+// Chai Setup
+
+const chai = require('chai');
+
+const expect = chai.expect;
+
+chai.use(require('chai-things'));
+chai.use(require('chai-properties'));
+chai.use(require('chai-as-promised'));
+
+module.exports = {
+  chai,
+  expect,
+  driver,
+  Person,
+  Class,
+  neo4j,
+  int
+}

@@ -1,12 +1,4 @@
-const neo4j = require('../../lib/neo4j');
-
-const chai = require('chai');
-const expect = chai.expect;
-
-chai.use(require('chai-things'));
-chai.use(require('chai-as-promised'));
-
-const Person = require('../models/person');
+const { Person, neo4j, driver, chai, expect } = require('../helper');
 
 describe('Simple Cypher queries', () => {
 
