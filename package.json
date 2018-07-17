@@ -55,7 +55,7 @@
     "pluralize": "^7.0.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^2.0.1",
+    "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/git": "^5.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
