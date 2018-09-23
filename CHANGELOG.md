@@ -1,3 +1,14 @@
+## [0.2.2](https://github.com/SvenWesterlaken/mongo4j/compare/v0.2.1...v0.2.2) (2018-09-23)
+
+
+### Bug Fixes
+
+* **package:** regenerate package-lock.json ([782b8b2](https://github.com/SvenWesterlaken/mongo4j/commit/782b8b2))
+* **package:** resolve conflicts ([2c685c1](https://github.com/SvenWesterlaken/mongo4j/commit/2c685c1))
+
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/SvenWesterlaken/mongo4j/compare/v0.2.0...v0.2.1) (2018-07-04)
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/SvenWesterlaken/mongo4j/compare/v0.1.2...v0.2.0) (2018-05-21)
 
