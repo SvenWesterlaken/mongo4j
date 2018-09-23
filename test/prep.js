@@ -1,1 +1,1 @@
-require('../lib/neo4j').init(null, {user: 'neo4j', pass: 'new'});
+require('../lib/neo4j').init(process.env.NEO_URI, {user: 'neo4j', pass: 'new'});
