@@ -18,7 +18,8 @@ _**Currently in development**_
 - [Setup](#setup)
   - [Single driver](#single-driver)
   - [Multiple drivers](#multiple-drivers)
-- [Upcoming features & to-do-list](#upcoming-features-&-to-do-list)
+- [Saving](#saving)
+- [Upcoming features & to-do-list](#upcoming-features---to-do-list)
 - [Credits](#credits)
 
 ## Installation
@@ -33,9 +34,10 @@ npm install -save mongo4j
 Before you use (require) mongo4j anywhere. **First initialize it with drivers.**
 
 This creates the singleton pattern lifecycle of driver(s) stated by the [neo4j-driver library](https://github.com/neo4j/neo4j-javascript-driver#usage-examples).
-Same options can be used as the official driver and there is the possibility of initializing multiple driver in the beginning which should be **only one driver per database**.
 
-Options can be found on the neo4j driver
+Same options can be used as the official driver and there is the possibility of initializing multiple drivers in the beginning. Which should be **only one driver per neo4j database**.
+
+Options can be found on the neo4j driver [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver).
 
 ### Single driver
 
@@ -44,7 +46,7 @@ Options can be found on the neo4j driver
 - `auth` - Authentication parameters:
   - `user` - User for neo4j authentication. Defaults to `neo4j`
   - `pass` - Password for neo4j authentication. Defaults to `neo4j`
-- `options` - Options for neo4j driver. Those can be found in the [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver).
+- `options` - Options for neo4j driver. These can be found in the [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver).
 
 ```javascript
 const mongo4j = require('mongo4j');
@@ -62,13 +64,13 @@ mongo4j.init('bolt://localhost', {user: 'neo4j', pass: 'neo4j'});
   - `auth` - Authentication parameters:
     - `user` - User for neo4j authentication. Defaults to `neo4j`
     - `pass` - Password for neo4j authentication. Defaults to `neo4j`
-  - `options` - Options for neo4j driver. Those can be found in the [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver).
+  - `options` - Options for neo4j driver. These can be found in the [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver).
 - `auth` - Authentication parameters. _Will be overwritten by individual authentication set in hosts_:
   - `user` - User for neo4j authentication. Defaults to `neo4j`
   - `pass` - Password for neo4j authentication. Defaults to `neo4j`
-- `options` - Options for neo4j driver. Those can be found in the [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver). _Will be overwritten by individual options set in hosts_
+- `options` - Options for neo4j driver. These can be found in the [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver). _Will be overwritten by individual options set in hosts_
 
-In the case of multiple drivers make sure you initiate every driver with an identifier (name) for later re-use.
+In the case of multiple drivers make sure you initialize every driver with an identifier (name) in string format for later re-use, otherwise an error will be thrown.
 
 ```javascript
 const mongo4j = require('mongo4j');
@@ -88,7 +90,9 @@ mongo4j.init(
 );
 ```
 
-Authentication can be specified as an second argument to use the same authentication for all drivers. Otherwise specify it per host. The same goes for options. if you want to only use shared options make sure you pass `null` as a second argument:
+Authentication can be specified as an second argument to use the same authentication for all drivers. Authentication set per host will override these global authentication settings.
+
+The same goes for options. If you only want to use shared options, make sure you pass `null` as a second argument:
 
 ```javascript
 const mongo4j = require('mongo4j');
@@ -107,12 +111,13 @@ This is also the reason there are only pre-releases yet.
 
 #### To-do-list:
 
-- **Automatic updates** (_currently in progress_)
+- **Automatic document updating** (_currently in progress_)
 - Automatic deletion
 - **Documentation** (_currently in progress_)
 - **Tests** (_currently in progress_)
 - Helper functions
 - State hooks
+- Plugin for subdocuments
 
 ## Credits
 
@@ -121,4 +126,4 @@ Big shoutout to [srfrnk](https://github.com/srfrnk) for creating the repo called
 After some digging through the code, I missed some functionality and saw that the old HTTP driver for neo4j was used.
 I decided to rewrite the code with extra functionality and use the [new neo4j driver](https://github.com/neo4j/neo4j-javascript-driver) which uses the _'bolt'_ connection.
 
-Moneo has provided me with the basic info to get started and mongo4j could be seen as (continued) **version 2.0**.
+Moneo has provided me with the basic info to get started and mongo4j could be seen as a (continued) **version 2.0**.
