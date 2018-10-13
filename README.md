@@ -9,9 +9,9 @@
 
 [![NPM](https://nodei.co/npm/mongo4j.png)](https://nodei.co/npm/mongo4j/)
 
-#### A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
-
-_**Currently in development**_
+> A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
+>
+> _**Currently in development**_
 
 ## Table of contents
 - [Installation](#installation)
@@ -19,7 +19,7 @@ _**Currently in development**_
   - [Single driver](#single-driver)
   - [Multiple drivers](#multiple-drivers)
 - [Saving](#saving)
-- [Upcoming features & to-do-list](#upcoming-features---to-do-list)
+- [Upcoming features & to-do-list](#upcoming-features--to-do-list)
 - [Credits](#credits)
 
 ## Installation
