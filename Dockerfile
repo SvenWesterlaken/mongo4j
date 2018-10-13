@@ -8,4 +8,6 @@ RUN npm i --only=dev
 
 COPY . .
 
+VOLUME /usr/src/app
+
 CMD ["npm", "start"]
