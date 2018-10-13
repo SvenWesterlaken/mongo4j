@@ -4,7 +4,7 @@
   "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
   "main": "index.js",
   "scripts": {
-    "start": "npm test",
+    "start": "set NODE_ENV=test && nodemon -L --exec mocha",
     "test": "set NODE_ENV=test && nodemon --exec mocha",
     "test-travis": "set NODE_ENV=test && mocha",
     "cover": "set NODE_ENV=test && nyc mocha",

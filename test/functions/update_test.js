@@ -1,7 +1,7 @@
 const { Person, Class, driver, chai, expect, int } = require('../helper');
 
-const getPropertiesUpdated = function(results) {
-  return results[1].summary.counters._stats.propertiesSet
+const getStats = function(results) {
+  return results[1].summary.counters._stats
 }
 
 describe('Mongo4J Updating', () => {
@@ -41,9 +41,9 @@ describe('Mongo4J Updating', () => {
       return result.updateNeo({firstName: 'Peter', lastName: 'Traverson'})
 
     }).then((results) => {
-      const propertiesSet = getPropertiesUpdated(results);
+      const neo_stats = getStats(results);
 
-      expect(propertiesSet).to.be.at.least(1);
+      expect(neo_stats.propertiesSet).to.be.at.least(1);
       expect(results[0].ok).to.equal(1);
 
       return session.run('MATCH ' +
@@ -88,9 +88,9 @@ describe('Mongo4J Updating', () => {
       })
 
     }).then((results) => {
-      const propertiesSet = getPropertiesUpdated(results);
+      const neo_stats = getStats(results);
 
-      expect(propertiesSet).to.be.at.least(1);
+      expect(neo_stats.propertiesSet).to.be.at.least(1);
       expect(results[0].ok).to.equal(1);
 
       return session.run('MATCH (n:Person {m_id : {id}})-[p]-(a:Address) RETURN a;', {id: neil._id.toString()});
@@ -144,9 +144,9 @@ describe('Mongo4J Updating', () => {
       return result.updateNeo(chemistry_update);
 
     }).then((results) => {
-      const propertiesSet = getPropertiesUpdated(results);
+      const neo_stats = getStats(results);
 
-      expect(propertiesSet).to.be.at.least(1);
+      expect(neo_stats.propertiesSet).to.be.at.least(1);
       expect(results[0].ok).to.equal(1);
 
       return session.run('MATCH (d:Book {m_id: {book_id}})-[pa]-(a:Class {m_id: {id}})-[pb]-(n:Book) RETURN d,n,a;', {id: chemistry._id.toString(), book_id: chemistry.books[0]._id.toString()});
@@ -165,6 +165,71 @@ describe('Mongo4J Updating', () => {
       expect(properties).to.have.a.property('author', 'Oliver Sacks');
       expect(properties).to.not.have.a.property('author', 'David Klein');
 
+      done();
+
+    });
+
+  });
+
+  it('Update a document reference', (done) => {
+    const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
+
+    neil.save().then((result) => {
+
+      expect(result).to.not.be.null;
+      expect(result).to.have.a.property('isNew', false);
+
+      return daniel.save();
+
+    }).then((result) => {
+
+      expect(result).to.not.be.null;
+      expect(result).to.include(daniel);
+      expect(result).to.have.a.property('_id');
+      expect(result).to.have.a.property('mongoSpecificValue1');
+      expect(result).to.have.a.property('mongoSpecificValue2');
+      expect(result).to.have.a.property('isNew', false);
+
+      const chemistry = new Class({
+        title: 'Chemistry',
+        teacher: result._id
+      })
+
+      return chemistry.save();
+
+    }).then((result) => {
+
+      expect(result).to.not.be.null;
+      expect(result).to.have.a.property('_id');
+      expect(result).to.have.a.property('isNew', false);
+
+      const chemistry_update = {
+        teacher: daniel._id
+      }
+
+      return result.updateNeo(chemistry_update);
+
+    }).then((results) => {
+      const neo_stats = getStats(results);
+
+      expect(neo_stats.relationshipsCreated).to.equal(1);
+      expect(neo_stats.relationshipsDeleted).to.equal(1);
+      expect(results[0].ok).to.equal(1);
+
+      return session.run('MATCH (n:Class)-[p]-(a:Person) RETURN n,p,a;');
+
+    }).then((result) => {
+      const properties_class = result.records[0]._fields[0].properties;
+      const properties_person = result.records[0]._fields[2].properties;
+
+      expect(result.records[0]._fields).to.have.a.lengthOf(3)
+      expect(properties_class).to.not.be.null;
+      expect(properties_person).to.have.property('m_id', daniel._id.toString());
+      expect(properties_person).to.not.have.property('m_id', neil._id.toString());
+      expect(properties_person).to.have.property('first_name', daniel.firstName);
+      expect(properties_person).to.not.have.property('first_name', neil.firstName);
+      expect(properties_person).to.have.property('last_name', daniel.lastName);
+      expect(properties_person).to.not.have.property('last_name', neil.lastName);
       done();
 
     });
