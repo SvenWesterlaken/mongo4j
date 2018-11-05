@@ -65,7 +65,7 @@
     "coveralls": "^3.0.0",
     "mocha": "^5.0.4",
     "mocha-lcov-reporter": "^1.3.0",
-    "nodemon": "^1.17.5",
+    "nodemon": "^1.18.6",
     "nyc": "^12.0.1",
     "semantic-release": "^15.9.16",
     "travis-deploy-once": "^5.0.0"
