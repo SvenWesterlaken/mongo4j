@@ -115,6 +115,7 @@ This is also the reason there are only pre-releases yet.
 - Automatic deletion
 - **Documentation** (_currently in progress_)
 - **Tests** (_currently in progress_)
+- Debug Mode
 - Helper functions
 - State hooks
 - Plugin for subdocuments
