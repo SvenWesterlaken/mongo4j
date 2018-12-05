@@ -4,6 +4,7 @@
   "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
   "main": "index.js",
   "scripts": {
+    "start": "set NODE_ENV=test && nodemon -L --exec 'jshint lib/ & mocha'",
     "test": "set NODE_ENV=test && nodemon --exec mocha",
     "test-travis": "set NODE_ENV=test && mocha",
     "cover": "set NODE_ENV=test && nyc mocha",
@@ -49,7 +50,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.5",
-    "mongoose": "^5.0.9",
+    "mongoose": "^5.3.14",
     "neo4j-driver": "~1.6.1",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^7.0.0"
@@ -63,9 +64,11 @@
     "chai-properties": "^1.3.0",
     "chai-things": "^0.2.0",
     "coveralls": "^3.0.0",
+    "jshint": "^2.9.6",
     "mocha": "^5.0.4",
     "mocha-lcov-reporter": "^1.3.0",
-    "nodemon": "^1.18.6",
+    "nodemon": "^1.18.6",5
+    "mocha-mongo": "^1.0.0",
     "nyc": "^12.0.1",
     "semantic-release": "^15.9.16",
     "travis-deploy-once": "^5.0.0"

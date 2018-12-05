@@ -1,6 +1,12 @@
 const { Person, neo4j, driver, chai, expect } = require('../helper');
+const neo4jUri = process.env.NEO_URI || "bolt://127.0.0.1";
 
 describe('Simple Cypher queries', () => {
+    before('reset the neo4j driver', (done) => {
+      neo4j.reset();
+      neo4j.init(neo4jUri, {user: 'neo4j', pass: 'new'});
+      done();
+    });
 
     beforeEach('Add 2 nodes to neo4j', (done) => {
         let session = neo4j.getDriver().session();
@@ -12,7 +18,7 @@ describe('Simple Cypher queries', () => {
             session.close()
             done();
         });
-    })
+    });
 
     it('Should run a Cypher query without any other arguments', (done) => {
         const query = 'MATCH (n:Person)-[r:Takes_Class]-(c:Class) return n;';

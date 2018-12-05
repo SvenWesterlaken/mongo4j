@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  mongo4j:
+    image: svenwstrl/mongo4j
+    build: ./
+    depends_on:
+      - neo4j
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+    environment:
+      MONGO_URI: mongodb
+      NEO_URI: bolt://neo4j
+      NEO_USER: neo4j
+      NEO_PASS: new
+    tty: true
+
+  neo4j:
+    image: neo4j
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      NEO4J_AUTH: neo4j/new
+
+  mongodb:
+    image: mongo
