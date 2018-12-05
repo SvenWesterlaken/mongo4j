@@ -49,29 +49,29 @@
     "node": ">=6.13.1"
   },
   "dependencies": {
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
     "mongoose": "^5.3.14",
-    "neo4j-driver": "~1.6.1",
+    "neo4j-driver": "^1.6.4",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^7.0.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^3.0.0",
-    "@semantic-release/git": "^6.0.2",
-    "chai": "^4.1.2",
+    "@semantic-release/changelog": "^3.0.1",
+    "@semantic-release/git": "^7.0.5",
+    "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-like": "^1.1.1",
     "chai-properties": "^1.3.0",
     "chai-things": "^0.2.0",
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.2",
     "jshint": "^2.9.6",
-    "mocha": "^5.0.4",
+    "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "nodemon": "^1.18.6",5
     "mocha-mongo": "^1.0.0",
+    "nodemon": "^1.18.6",
     "nyc": "^12.0.1",
-    "semantic-release": "^15.9.16",
-    "travis-deploy-once": "^5.0.0"
+    "semantic-release": "^15.12.4",
+    "travis-deploy-once": "^5.0.9"
   },
   "release": {
     "verifyConditions": [
