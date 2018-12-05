@@ -34,7 +34,7 @@ const PersonSchema = new Schema({
     class: {
       type: mongoose.Schema.ObjectId,
       ref: 'Class',
-      neo_rel_name:'Takes Class'
+      neo_rel_name: 'Takes Class'
     },
     grade: Number,
     year: Number
