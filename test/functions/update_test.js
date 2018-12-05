@@ -1,7 +1,7 @@
 const { Person, Class, driver, chai, expect, int } = require('../helper');
 
-const getStats = function(results) {
-  return results[1].summary.counters._stats
+const getStats = function(results, has_delete = false) {
+  return results[has_delete ? 2 : 1].summary.counters._stats
 }
 
 describe('Mongo4J Updating', () => {
@@ -210,10 +210,11 @@ describe('Mongo4J Updating', () => {
       return result.updateNeo(chemistry_update);
 
     }).then((results) => {
+      const neo_del_stats = getStats(results, true);
       const neo_stats = getStats(results);
 
       expect(neo_stats.relationshipsCreated).to.equal(1);
-      expect(neo_stats.relationshipsDeleted).to.equal(1);
+      expect(neo_del_stats.relationshipsDeleted).to.equal(1);
       expect(results[0].ok).to.equal(1);
 
       return session.run('MATCH (n:Class)-[p]-(a:Person) RETURN n,p,a;');
@@ -233,6 +234,56 @@ describe('Mongo4J Updating', () => {
       done();
 
     });
+
+  });
+
+  it('Update an array of document references', (done) => {
+    const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
+    const henry = new Person({firstName: "Henry", lastName: "McCoverty"});
+    const jason = new Person({firstName: "Jason", lastName: "Campbell"});
+
+    Person.insertMany([daniel, neil, henry, jason]).then((result) => {
+
+      expect(result).to.not.be.null;
+      expect(result).to.have.a.lengthOf(4);
+      expect(result).to.contain.something.with.a.property('firstName', neil.firstName);
+      expect(result).to.contain.something.with.a.property('lastName', daniel.lastName);
+      expect(result).to.contain.something.with.a.property('firstName', henry.firstName);
+      expect(result).to.contain.something.with.a.property('lastName', jason.lastName);
+
+      const chemistry = new Class({
+        title: 'Chemistry',
+        students: [daniel._id, neil._id]
+      });
+
+      return chemistry.save();
+
+    }).then((result) => {
+
+      expect(result).to.not.be.null;
+      expect(result).to.have.a.property('_id');
+      expect(result).to.have.a.property('isNew', false);
+      expect(result.students).to.be.an('Array');
+      expect(result.students).to.have.a.lengthOf(2);
+
+
+      const chemistry_update = {
+        students: [henry._id, jason._id]
+      };
+
+      return result.updateNeo(chemistry_update);
+
+    }).then((results) => {
+      const neo_del_stats = getStats(results, true);
+      const neo_stats = getStats(results);
+
+      expect(neo_stats.relationshipsCreated).to.equal(2);
+      expect(neo_del_stats.relationshipsDeleted).to.equal(2);
+      expect(results[0].ok).to.equal(1);
+
+      done();
+    });
+
 
   });
 
