@@ -2,10 +2,12 @@ const neo4j = require('../../lib/neo4j');
 const chai = require('chai');
 const expect = chai.expect;
 
+const neo4jUri = process.env.NEO_URI || "bolt://127.0.0.1";
+
 describe("Neo4J driver management", () => {
 
   afterEach(() => neo4j.reset());
-  after(() => neo4j.init(null, {user: 'neo4j', pass: 'new'}));
+  after(() => neo4j.init(neo4jUri, {user: 'neo4j', pass: 'new'}));
 
   //----------------------------------------
   // Reset functionality
@@ -25,10 +27,10 @@ describe("Neo4J driver management", () => {
   it('Should reset with multiple drivers', () => {
     neo4j.init([{
       name: 'testconnection1',
-      url: 'bolt://127.0.0.1'
+      url: neo4jUri
     }, {
       name: 'testconnection2',
-      url: 'bolt://127.0.0.1'
+      url: neo4jUri
     }]);
 
     expect(neo4j.drivers).to.be.an('array').with.a.lengthOf(2);
@@ -54,10 +56,10 @@ describe("Neo4J driver management", () => {
   it('Should create a multiple drivers with array as argument', () => {
     neo4j.init([{
       name: 'testconnection1',
-      url: 'bolt://127.0.0.1'
+      url: neo4jUri
     }, {
       name: 'testconnection2',
-      url: 'bolt://127.0.0.1'
+      url: neo4jUri
     }]);
 
     expect(neo4j.drivers).to.be.an('array').with.a.lengthOf(2);
