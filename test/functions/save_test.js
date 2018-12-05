@@ -194,8 +194,8 @@ describe('Mongo4J Saving', () => {
 
     Person.insertMany([daniel, henry]).then((result) => {
 
-      expect(result).to.not.be.null,
-      expect(result).to.have.a.lengthOf(2),
+      expect(result).to.not.be.null;
+      expect(result).to.have.a.lengthOf(2);
       expect(result).to.contain.something.with.a.property('firstName', henry.firstName);
       expect(result).to.contain.something.with.a.property('lastName', daniel.lastName);
 
