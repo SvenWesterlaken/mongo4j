@@ -12,6 +12,9 @@ services:
     environment:
       MONGO_URI: mongodb
       NEO_URI: bolt://neo4j
+      NEO_USER: neo4j
+      NEO_PASS: new
+    tty: true
 
   neo4j:
     image: neo4j
