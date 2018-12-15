@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const neo4j = require('../lib/neo4j');
 
 const int = require('neo4j-driver').v1.int;
+const toNumber = require('neo4j-driver').v1.integer.toNumber;
 
 const driver = neo4j.getDriver();
 
@@ -49,5 +50,6 @@ module.exports = {
   Person,
   Class,
   neo4j,
-  int
+  int,
+  toNumber
 }
