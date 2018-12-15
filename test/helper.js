@@ -24,7 +24,7 @@ before((done) => {
 beforeEach((done) => {
   // Drop all mongo documents & Neo4j Nodes before each test
   const session = driver.session();
-  Promise.all([Person.remove({}), Class.remove({}), session.run("MATCH (n) DETACH DELETE n")])
+  Promise.all([Person.deleteMany({}), Class.deleteMany({}), session.run("MATCH (n) DETACH DELETE n")])
     .then(() => { session.close(); done(); })
     .catch((err) => done(err));
 });
