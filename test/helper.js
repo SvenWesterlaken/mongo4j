@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const neo4j = require('../lib/neo4j');
 
 const int = require('neo4j-driver').v1.int;
+const toNumber = require('neo4j-driver').v1.integer.toNumber;
 
 const driver = neo4j.getDriver();
 
@@ -24,7 +25,7 @@ before((done) => {
 beforeEach((done) => {
   // Drop all mongo documents & Neo4j Nodes before each test
   const session = driver.session();
-  Promise.all([Person.remove({}), Class.remove({}), session.run("MATCH (n) DETACH DELETE n")])
+  Promise.all([Person.deleteMany({}), Class.deleteMany({}), session.run("MATCH (n) DETACH DELETE n")])
     .then(() => { session.close(); done(); })
     .catch((err) => done(err));
 });
@@ -49,5 +50,6 @@ module.exports = {
   Person,
   Class,
   neo4j,
-  int
+  int,
+  toNumber
 }
