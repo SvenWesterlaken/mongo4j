@@ -33,6 +33,11 @@ cache:
   directories:
     - ~/.npm
 
+before_install:
+  - if [[ `npm -v` != 6* ]]; then npm install -g npm@6; fi
+
+install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
+
 notifications:
   email: false
 
