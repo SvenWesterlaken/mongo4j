@@ -17,16 +17,17 @@ node_js:
   - '8'
   - '6'
 
-addons:
-  apt:
-    sources:
-      - sourceline: 'deb https://debian.neo4j.org/repo stable/'
-        key_url: 'https://debian.neo4j.org/neotechnology.gpg.key'
-    packages:
-      - neo4j
+# addons:
+#   apt:
+#     sources:
+#       - sourceline: 'deb https://debian.neo4j.org/repo stable/'
+#         key_url: 'https://debian.neo4j.org/neotechnology.gpg.key'
+#     packages:
+#       - neo4j
 
 services:
   - mongodb
+  - neo4j
 
 cache:
   directories:
