@@ -79,3 +79,5 @@ crashlytics.properties
 crashlytics-build.properties
 
 .nyc_output/
+
+scribble\.txt

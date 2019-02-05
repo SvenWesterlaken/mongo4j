@@ -2,7 +2,7 @@
 
 const { Person, Class, driver, chai, expect, int } = require('../helper');
 
-describe('Mongoose Saving', () => {
+describe('Mongo4J Saving', () => {
   let neil;
   let session;
 
@@ -25,7 +25,7 @@ describe('Mongoose Saving', () => {
     session.close();
   })
 
-  it('Should save a single person in Mongo & Neo4J', (done) => {
+  it('Save a single person in Mongo & Neo4J', (done) => {
 
     neil.save().then((result) => {
 
@@ -53,7 +53,7 @@ describe('Mongoose Saving', () => {
 
   });
 
-  it('Should save multiple persons in Mongo & Neo4J', (done) => {
+  it('Save multiple persons in Mongo & Neo4J', (done) => {
     const henry = new Person({firstName: "Henry", lastName: "McCoverty"});
     const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
     const jason = new Person({firstName: "Jason", lastName: "Campbell"});
@@ -79,7 +79,7 @@ describe('Mongoose Saving', () => {
 
   });
 
-  it('Should save a subdocument as a different Node', (done) => {
+  it('Save a subdocument as a different Node', (done) => {
     neil.save().then((result) => {
 
       expect(result).to.not.be.null;
@@ -108,7 +108,7 @@ describe('Mongoose Saving', () => {
     });
   });
 
-  it('Should save an array of subdocuments as multiple different nodes', (done) => {
+  it('Save an array of subdocuments as multiple different nodes', (done) => {
     const chemistry = new Class({
       title: 'Chemistry',
       books: [{
@@ -145,7 +145,7 @@ describe('Mongoose Saving', () => {
     });
   });
 
-  it('Should save a simple document reference as a relationship in Neo4J', (done) => {
+  it('Save a simple document reference as a relationship in Neo4J', (done) => {
 
     neil.save().then((result) => {
 
@@ -188,14 +188,14 @@ describe('Mongoose Saving', () => {
 
   });
 
-  it('Should save an array of document references as multiple relationships in Neo4J', (done) => {
+  it('Save an array of document references as multiple relationships in Neo4J', (done) => {
     const henry = new Person({firstName: "Henry", lastName: "McCoverty"});
     const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
 
     Person.insertMany([daniel, henry]).then((result) => {
 
-      expect(result).to.not.be.null,
-      expect(result).to.have.a.lengthOf(2),
+      expect(result).to.not.be.null;
+      expect(result).to.have.a.lengthOf(2);
       expect(result).to.contain.something.with.a.property('firstName', henry.firstName);
       expect(result).to.contain.something.with.a.property('lastName', daniel.lastName);
 
@@ -232,7 +232,7 @@ describe('Mongoose Saving', () => {
 
   });
 
-  it('Should save a nested document reference as a node and a relationship with properties', (done) => {
+  it('Save a nested document reference as a node and a relationship with properties', (done) => {
 
     neil.save().then((result) => {
 
@@ -280,7 +280,7 @@ describe('Mongoose Saving', () => {
 
   });
 
-  it('Should save a nested array of document references as multiple nodes and relationships with properties', (done) => {
+  it('Save a nested array of document references as multiple nodes and relationships with properties', (done) => {
 
     const chemistry = new Class({ title: 'Chemistry'});
     const mathematics = new Class({ title: 'Mathematics'});
@@ -332,64 +332,4 @@ describe('Mongoose Saving', () => {
 
     });
   });
-
-  // it('Should save in Mongo', (done) => {
-  //
-  //
-  //
-  //     Promise.all([neil.save(), Person.insertMany([daniel, jason, henry])]).then((result) => {
-  //       const chemistry = new Class({
-  //         title: 'Chemistry',
-  //         teacher: result[0]._id,
-  //         supervisor: {
-  //           person: result[1][2]._id,
-  //           start_date: test_date
-  //         },
-  //         students: [
-  //           result[1][0]._id,
-  //           result[1][1]._id
-  //         ],
-  //         books: [{
-  //           title: 'Organic Chemistry as a Second Language',
-  //           author: 'David Klein'
-  //         }, {
-  //           title: 'Chemistry: A Molecular Approach',
-  //           author: 'Nivaldo J. Tro'
-  //         }]
-  //       });
-  //       chemistry.save().then((result) => {
-  //
-  //         const jack = new Person({
-  //           firstName: "Jack",
-  //           lastName: "Landers",
-  //           takenClasses: [{
-  //             class: result._id,
-  //             grade: 6,
-  //             year: 2018
-  //           }]
-  //         });
-  //         jack.save().then(() => {
-  //
-  //           const session = driver.session();
-  //
-  //           session.run('MATCH (n) RETURN count(n) AS count').then((response) => {
-  //             let count = 0;
-  //             response.records.forEach((record) => count = record.get('count').low);
-  //             session.close();
-  //
-  //             expect(count).to.equal(9);
-  //
-  //             done();
-  //           });
-  //
-  //
-  //
-  //         });
-  //
-  //       });
-  //
-  //     });
-  //
-  // });
-
 });

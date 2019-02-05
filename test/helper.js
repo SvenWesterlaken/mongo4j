@@ -2,38 +2,39 @@ const mongoose = require('mongoose');
 const neo4j = require('../lib/neo4j');
 
 const int = require('neo4j-driver').v1.int;
+const toNumber = require('neo4j-driver').v1.integer.toNumber;
 
 const driver = neo4j.getDriver();
 
 const Person = require('./models/person');
 const Class = require('./models/class');
 
+const mongoUri = process.env.MONGO_URI || "127.0.0.1";
+
 mongoose.Promise = global.Promise;
 
 before((done) => {
   // Connect to mongo
-  mongoose.connect('mongodb://127.0.0.1/moneo-test');
-  mongoose.connection
-    .once('open', () => done())
-    .on('error', (err) => console.warn('Warning', err));
+  if(mongoose.connection.readyState == 0) {
+    mongoose.connect(`mongodb://${mongoUri}:27017/moneo-test`).then(() => done());
+  } else {
+    done();
+  }
 });
 
 beforeEach((done) => {
-  //Drop all mongo documents & Neo4j Nodes before each test
+  // Drop all mongo documents & Neo4j Nodes before each test
   const session = driver.session();
-  Promise.all([Person.remove({}), Class.remove({}), session.run("MATCH (n) DETACH DELETE n")])
+  Promise.all([Person.deleteMany({}), Class.deleteMany({}), session.run("MATCH (n) DETACH DELETE n")])
     .then(() => { session.close(); done(); })
     .catch((err) => done(err));
 });
 
 after(() => {
-  // Close connections after tests are done
-  mongoose.disconnect();
   neo4j.close();
 });
 
 // Chai Setup
-
 const chai = require('chai');
 
 const expect = chai.expect;
@@ -49,5 +50,6 @@ module.exports = {
   Person,
   Class,
   neo4j,
-  int
+  int,
+  toNumber
 }
