@@ -1,5 +1,3 @@
-'use strict';
-
 const { Person, Class, driver, chai, expect, int } = require('../helper');
 
 describe('Mongo4J Saving', () => {
