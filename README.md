@@ -111,8 +111,7 @@ This is also the reason there are only pre-releases yet.
 
 #### To-do-list:
 
-<!-- - **Automatic document updating** (_currently in progress_) -->
-- Automatic deletion
+- Wrappers around static functions of a model
 - **Documentation** (_currently in progress_)
 - **Tests** (_currently in progress_)
 - Debug Mode
