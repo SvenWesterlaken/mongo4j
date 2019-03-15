@@ -22,6 +22,15 @@
 - [Upcoming features & to-do-list](#upcoming-features--to-do-list)
 - [Credits](#credits)
 
+## Why Mongo4j?
+
+The usage of mongo4j is found in the term [polyglot persistence](https://en.wikipedia.org/wiki/Polyglot_persistence). In this case you will most likely want to combine the 'relationship-navigation'
+of neo4j while still maintaining documents in mongodb for quick access and saving all information. Unfortunately this also brings in extra maintainance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
+
+These are great solutions, but I've found myself not fully satisfied by these. The doc manager, for example, needs another application layer to install and run it. The other two solutions were either out of date or needed a manual form of maintaining the graphs in neo4j. That's why I decided to give my own ideas a shot in the form of a mongoose plugin.
+
+Although mongo4j doesn't cover changes outside the mongoose context _yet_, it still automatically updates, removes and adds graphs according to the given schema configuration. In addition to this it adds extra functions to access the graphs from the models through mongoose. This way, there is no need to keep two different approaches to the neo4j-database.
+
 ## Installation
 
 Download and install the package with npm:
@@ -99,6 +108,20 @@ const mongo4j = require('mongo4j');
 
 mongo4j.init([host1, host2], null, {connectionPoolSize: 100});
 ```
+
+### Add the plugin to the schema
+
+#### CustomSchema.plugin(moneo.plugin(identifier)
+- `identifier` - Identifier to reference the specific driver to use _(in case of multiple drivers)_
+
+```javascript
+// Use the default driver connection (in case of one driver)
+PersonSchema.plugin(moneo.plugin());
+
+// Use the 'testconnection1' driver to connect to neo4j
+PersonSchema.plugin(moneo.plugin('testconnection1'))
+```
+
 
 ## Saving
 
