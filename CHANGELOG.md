@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/SvenWesterlaken/mongo4j/compare/v0.3.0...v0.4.0) (2019-03-15)
+
+
+### Features
+
+* **delete:** add automatic deletion for remove() ([91033fa](https://github.com/SvenWesterlaken/mongo4j/commit/91033fa))
+
 # [0.3.0](https://github.com/SvenWesterlaken/mongo4j/compare/v0.2.2...v0.3.0) (2019-02-05)
 
 
