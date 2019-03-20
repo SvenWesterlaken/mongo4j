@@ -116,10 +116,10 @@ mongo4j.init([host1, host2], null, {connectionPoolSize: 100});
 
 ```javascript
 // Use the default driver connection (in case of one driver)
-PersonSchema.plugin(moneo.plugin());
+PersonSchema.plugin(mongo4j.plugin());
 
 // Use the 'testconnection1' driver to connect to neo4j
-PersonSchema.plugin(moneo.plugin('testconnection1'))
+PersonSchema.plugin(mongo4j.plugin('testconnection1'))
 ```
 
 
