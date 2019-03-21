@@ -18,7 +18,13 @@
 - [Setup](#setup)
   - [Single driver](#single-driver)
   - [Multiple drivers](#multiple-drivers)
+  - [Add the plugin to the schema](#add-the-plugin-to-the-schema)
+- [Schema configuration options](#schema-configuration-options)
+  - [Standard Properties](#standard-properties)
+  - [Relationships (References, Nested References & Subdocuments)](#relationships-references-nested-references--subdocuments)
 - [Saving](#saving)
+- [Updating](#updating)
+- [Removing](#removing)
 - [Upcoming features & to-do-list](#upcoming-features--to-do-list)
 - [Credits](#credits)
 
