@@ -116,10 +116,10 @@ mongo4j.init([host1, host2], null, {connectionPoolSize: 100});
 
 ```javascript
 // Use the default driver connection (in case of one driver)
-PersonSchema.plugin(moneo.plugin());
+PersonSchema.plugin(mongo4j.plugin());
 
 // Use the 'testconnection1' driver to connect to neo4j
-PersonSchema.plugin(moneo.plugin('testconnection1'))
+PersonSchema.plugin(mongo4j.plugin('testconnection1'))
 ```
 
 ## Schema configuration options
@@ -152,7 +152,7 @@ Therefore there are several options to configure how to relationship is saved.
 - **Note**: relationships will be converted to uppercase to conform to the neo4j naming conventions
 
 ```javascript
-// Will result in 'TAUGHT_BY' relationship
+// Results in 'TAUGHT_BY' relationship
 const ClassSchema = new Schema({
   teacher: {
     type: mongoose.Schema.ObjectId,
@@ -161,7 +161,7 @@ const ClassSchema = new Schema({
   }
 });
 
-// Will result in 'SUPERVISOR_CLASS_PERSON' relationship
+// Results in 'SUPERVISOR_CLASS_PERSON' relationship (including a start_date property)
 const ClassSchema = new Schema({
   supervisor: {
     person: {
@@ -178,7 +178,7 @@ const ClassSchema = new Schema({
 - If set to `true` this relationship will not be saved (omitted) in neo4j.
 
 ```javascript
-// Will not save the relationship to teacher in neo4j (the teacher will still be saved tho)
+// Don't save the relationship to teacher in neo4j (the teacher can still be saved separately)
 const ClassSchema = new Schema({
   teacher: {
     type: mongoose.Schema.ObjectId,
@@ -204,14 +204,14 @@ neil = new Person({
   }
 });
 
-// Will save 'neil' as a node in neo4j (as well ass mongodb) according to the schema configuration
+// Save 'neil' as a node in neo4j (as well as mongodb) according to the schema configuration
 neil.save();
 
 const henry = new Person({firstName: "Henry", lastName: "McCoverty"});
 const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
 const jason = new Person({firstName: "Jason", lastName: "Campbell"});
 
-// Will save all three persons in neo4j as well as mongodb
+// Save all three persons in neo4j as well as mongodb
 Person.insertMany([daniel, jason, henry]);
 ```
 
@@ -226,7 +226,7 @@ _**TODO**_
 Removing a mongo document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well.
 
 ```javascript
-// Will remove 'neil' from neo4j as well as mongo
+// Remove 'neil' from neo4j as well as mongo
 neil.remove()
 ```
 
