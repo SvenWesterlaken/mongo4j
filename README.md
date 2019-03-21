@@ -18,7 +18,13 @@
 - [Setup](#setup)
   - [Single driver](#single-driver)
   - [Multiple drivers](#multiple-drivers)
+  - [Add the plugin to the schema](#add-the-plugin-to-the-schema)
+- [Schema configuration options](#schema-configuration-options)
+  - [Standard Properties](#standard-properties)
+  - [Relationships (References, Nested References & Subdocuments)](#relationships-references-nested-references--subdocuments)
 - [Saving](#saving)
+- [Updating](#updating)
+- [Removing](#removing)
 - [Upcoming features & to-do-list](#upcoming-features--to-do-list)
 - [Credits](#credits)
 
@@ -29,7 +35,7 @@ of neo4j while still maintaining documents in mongodb for quick access and savin
 
 These are great solutions, but I've found myself not fully satisfied by these. The doc manager, for example, needs another application layer to install and run it. The other two solutions were either out of date or needed a manual form of maintaining the graphs in neo4j. That's why I decided to give my own ideas a shot in the form of a mongoose plugin.
 
-Although mongo4j doesn't cover changes outside the mongoose context _yet_, it still automatically updates, removes and adds graphs according to the given schema configuration. In addition to this it adds extra functions to access the graphs from the models through mongoose. This way, there is no need to keep two different approaches to the neo4j-database.
+Although mongo4j doesn't cover changes outside the mongoose context [_yet_](https://docs.mongodb.com/manual/changeStreams/), it still automatically updates, removes and adds graphs according to the given schema configuration. In addition to this it adds extra functions to access the graphs from the models through mongoose. This way, there is no need to keep two different approaches to the neo4j-database.
 
 ## Installation
 
@@ -111,21 +117,124 @@ mongo4j.init([host1, host2], null, {connectionPoolSize: 100});
 
 ### Add the plugin to the schema
 
-#### CustomSchema.plugin(moneo.plugin(identifier)
+#### CustomSchema.plugin(moneo.plugin(identifier))
 - `identifier` - Identifier to reference the specific driver to use _(in case of multiple drivers)_
 
 ```javascript
 // Use the default driver connection (in case of one driver)
-PersonSchema.plugin(moneo.plugin());
+PersonSchema.plugin(mongo4j.plugin());
 
 // Use the 'testconnection1' driver to connect to neo4j
-PersonSchema.plugin(moneo.plugin('testconnection1'))
+PersonSchema.plugin(mongo4j.plugin('testconnection1'))
 ```
 
+## Schema configuration options
+
+After you have added mongo4j as a plugin to your documentschema there are several properties to configure which and how data of the document is saved in neo4j.
+
+### Standard Properties
+These options apply to simple schema properties.
+
+#### neo_prop: `Boolean`
+- Defaults to `false`.
+- If set to `true` this property will be saved in neo4j.
+
+```javascript
+// Save firstName as a property in neo4j
+const PersonSchema = new Schema({
+  firstName: {
+    type: String,
+    neo_prop: true
+  }
+});
+```
+
+### Relationships (References, Nested References & Subdocuments)
+References, nested references & subdocuments are automatically saved as different nodes as explained [here](#saving).
+Therefore there are several options to configure how to relationship is saved.
+
+#### neo_rel_name: `String`
+- Defaults to `[PROPERTY NAME]_[DOCUMENT TYPE]_[RELATED DOCUMENT TYPE]`. ie: `SUPERVISOR_CLASS_PERSON`
+- **Note**: relationships will be converted to uppercase to conform to the neo4j naming conventions
+
+```javascript
+// Results in 'TAUGHT_BY' relationship
+const ClassSchema = new Schema({
+  teacher: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Person',
+    neo_rel_name: "Taught By"
+  }
+});
+
+// Results in 'SUPERVISOR_CLASS_PERSON' relationship (including a start_date property)
+const ClassSchema = new Schema({
+  supervisor: {
+    person: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Person'
+    },
+    start_date: Date
+  },
+});
+```
+
+#### neo_omit_rel: `Boolean`
+- Defaults to `false`.
+- If set to `true` this relationship will not be saved (omitted) in neo4j.
+
+```javascript
+// Don't save the relationship to teacher in neo4j (the teacher can still be saved separately)
+const ClassSchema = new Schema({
+  teacher: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Person',
+    neo_omit_rel: true
+  }
+});
+```
 
 ## Saving
 
-##### ***Todo***
+Saving a mongo document in neo4j is executed as you would normally. Post hooks of `Document.save()` & `Model.insertMany()` will cause the saved document(s) to be saved in neo4j as well.
+
+```javascript
+const Person = require('path/to/models/person');
+
+neil = new Person({
+  firstName: "Neil",
+  lastName: "Young",
+  address: {
+    city: "Brentwood",
+    street: "Barleau St."
+  }
+});
+
+// Save 'neil' as a node in neo4j (as well as mongodb) according to the schema configuration
+neil.save();
+
+const henry = new Person({firstName: "Henry", lastName: "McCoverty"});
+const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
+const jason = new Person({firstName: "Jason", lastName: "Campbell"});
+
+// Save all three persons in neo4j as well as mongodb
+Person.insertMany([daniel, jason, henry]);
+```
+
+_Explanation about details coming soon_
+
+## Updating
+
+_**TODO**_
+
+## Removing
+
+Removing a mongo document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well.
+
+```javascript
+// Remove 'neil' from neo4j as well as mongo
+neil.remove()
+```
 
 ## Upcoming features & to-do-list
 This plugin is still in early development so not all features are yet implemented unfortunately.
@@ -134,11 +243,11 @@ This is also the reason there are only pre-releases yet.
 
 #### To-do-list:
 
-- Wrappers around static functions of a model
+- Wrappers around static functions of a model (adding, updating & deleting)
 - **Documentation** (_currently in progress_)
 - **Tests** (_currently in progress_)
-- Debug Mode
-- Helper functions
+- Debug Mode (ie. show neo4j query's)
+- Helper functions for neo4j access
 - State hooks
 <!-- - Plugin for subdocuments -->
 
@@ -147,6 +256,6 @@ This is also the reason there are only pre-releases yet.
 Big shoutout to [srfrnk](https://github.com/srfrnk) for creating the repo called [moneo](https://github.com/srfrnk/moneo).
 
 After some digging through the code, I missed some functionality and saw that the old HTTP driver for neo4j was used.
-I decided to rewrite the code with extra functionality and use the [new neo4j driver](https://github.com/neo4j/neo4j-javascript-driver) which uses the _'bolt'_ connection.
+I decided to rewrite the code with extra functionality and use the [new neo4j driver](https://github.com/neo4j/neo4j-javascript-driver) with _'bolt'_ connection.
 
 Moneo has provided me with the basic info to get started and mongo4j could be seen as a (continued) **version 2.0**.
