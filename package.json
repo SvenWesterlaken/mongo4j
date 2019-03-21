@@ -84,11 +84,6 @@
       "preset": "angular",
       "releaseRules": [
         {
-          "type": "doc",
-          "scope": "README",
-          "release": "patch"
-        },
-        {
           "type": "refactor",
           "release": "patch"
         },
