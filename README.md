@@ -31,7 +31,7 @@
 ## Why Mongo4j?
 
 The usage of mongo4j is found in the term [polyglot persistence](https://en.wikipedia.org/wiki/Polyglot_persistence). In this case you will most likely want to combine the 'relationship-navigation'
-of neo4j while still maintaining documents in mongodb for quick access and saving all information. Unfortunately this also brings in extra maintainance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
+of neo4j while still maintaining documents in mongodb for quick access and saving all information. Unfortunately this also brings in extra maintenance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
 
 These are great solutions, but I've found myself not fully satisfied by these. The doc manager, for example, needs another application layer to install and run it. The other two solutions were either out of date or needed a manual form of maintaining the graphs in neo4j. That's why I decided to give my own ideas a shot in the form of a mongoose plugin.
 
@@ -138,6 +138,7 @@ These options apply to simple schema properties.
 #### neo_prop: `Boolean`
 - Defaults to `false`.
 - If set to `true` this property will be saved in neo4j.
+- **Note:** the `_id` property in mongodb will automatically be added as `m_id` in neo4j.
 
 ```javascript
 // Save firstName as a property in neo4j
@@ -155,7 +156,7 @@ Therefore there are several options to configure how to relationship is saved.
 
 #### neo_rel_name: `String`
 - Defaults to `[PROPERTY NAME]_[DOCUMENT TYPE]_[RELATED DOCUMENT TYPE]`. ie: `SUPERVISOR_CLASS_PERSON`
-- **Note**: relationships will be converted to uppercase to conform to the neo4j naming conventions
+- **Note:** relationships will be converted to uppercase to conform to the neo4j naming conventions
 
 ```javascript
 // Results in 'TAUGHT_BY' relationship
@@ -196,7 +197,9 @@ const ClassSchema = new Schema({
 
 ## Saving
 
-Saving a mongo document in neo4j is executed as you would normally. Post hooks of `Document.save()` & `Model.insertMany()` will cause the saved document(s) to be saved in neo4j as well.
+Saving a mongo-document in neo4j is executed as you would normally. Therefore, return values will still be the same as without mongo4j. Post hooks of `Document.save()` & `Model.insertMany()` will cause the saved document(s) to be saved in neo4j as well.
+
+**Note:** The hooks for saving in neo4j are executed asynchronously.
 
 ```javascript
 const Person = require('path/to/models/person');
@@ -221,15 +224,22 @@ const jason = new Person({firstName: "Jason", lastName: "Campbell"});
 Person.insertMany([daniel, jason, henry]);
 ```
 
-_Explanation about details coming soon_
-
 ## Updating
 
-_**TODO**_
+Unfortunately, mongodb doesn't have a direct way of accessing data in update hooks. Therefore a custom method on the document will be used that will both handle the saving in mongodb and neo4j.
+
+#### Document.updateNeo(criteria, options, cb)
+- **Note**: parameters are almost identical to that of `Model.updateOne()`. Documentation can therefore be found [here](https://mongoosejs.com/docs/api.html#document_Document-updateOne).
+- `criteria`: Data that should be changed _(json format)_
+- `options`: options for the `updateOne()` method executed. Refer to the [documentation](https://mongoosejs.com/docs/api.html#query_Query-setOptions) of mongoose for available options.
+- `cb`: Callback function to be executed by the `updateOne()` method.
+
+- **Returns:**
+
 
 ## Removing
 
-Removing a mongo document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well.
+Removing a mongo-document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well (including subdocuments & relationships).
 
 ```javascript
 // Remove 'neil' from neo4j as well as mongo
@@ -245,6 +255,8 @@ This is also the reason there are only pre-releases yet.
 
 - Wrappers around static functions of a model (adding, updating & deleting)
 - **Documentation** (_currently in progress_)
+- Code documentation
+- Creating a wiki or documentation website
 - **Tests** (_currently in progress_)
 - Debug Mode (ie. show neo4j query's)
 - Helper functions for neo4j access
