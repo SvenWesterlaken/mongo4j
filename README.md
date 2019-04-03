@@ -226,15 +226,35 @@ Person.insertMany([daniel, jason, henry]);
 
 ## Updating
 
-Unfortunately, mongodb doesn't have a direct way of accessing data in update hooks. Therefore a custom method on the document will be used that will both handle the saving in mongodb and neo4j.
+Unfortunately, mongoose doesn't supply a direct way of accessing data in update hooks. Therefore a custom method on the document will be used that will both handle the saving in mongodb and neo4j. It can be seen as wrapper around the original `Document.updateOne()` method.
 
 #### Document.updateNeo(criteria, options, cb)
-- **Note**: parameters are almost identical to that of `Model.updateOne()`. Documentation can therefore be found [here](https://mongoosejs.com/docs/api.html#document_Document-updateOne).
+- **Note**: parameters are identical to that of `Model.updateOne()`. Detailed documentation can therefore be found [here](https://mongoosejs.com/docs/api.html#document_Document-updateOne).
 - `criteria`: Data that should be changed _(json format)_
 - `options`: options for the `updateOne()` method executed. Refer to the [documentation](https://mongoosejs.com/docs/api.html#query_Query-setOptions) of mongoose for available options.
 - `cb`: Callback function to be executed by the `updateOne()` method.
 
-- **Returns:**
+**Returns:** a promise with a result of an array containing (in order):
+- Result of the updateOne method. See [documentation](https://mongoosejs.com/docs/api.html#document_Document-updateOne)
+- Result of the cypher update query
+- Result of the cypher query that deleted all the previous relationships. **(If not executed this will be null)**. Why this query is executed is explained [here](#upcoming-features--to-do-list)
+
+```javascript
+// variable `person` refers to a document fetched from the database or returned as a result after saving
+
+// Update the firstname to 'Peter' and lastname to 'Traverson'.
+person.updateOne({firstName: 'Peter', lastName: 'Traverson'}).then((results) => {
+  // First item of the array is the result of the update query by mongoose
+  let mongoUpdateResult = results[0];
+
+  // Second item of the array is the result of the neo4j cypher query for updates
+  let neo4jUpdateResult = results[1];
+
+  // Third item of the array is the result of the delete query. In this case null,
+  // because the updates didn't involve any changes in relationships between nodes.
+  let neo4jDeleteResult = result[2];
+});
+```
 
 
 ## Removing
