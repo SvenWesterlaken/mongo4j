@@ -51,7 +51,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "mongoose": "^5.4.18",
-    "neo4j-driver": "^1.7.0",
+    "neo4j-driver": "^4.0.0",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^7.0.0"
   },
