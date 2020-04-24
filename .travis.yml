@@ -13,13 +13,16 @@ group: deprecated-2017Q4
 
 language: node_js
 node_js:
-  - '9'
-  - '8'
-  - '6'
+  - '10'
+  - '12'
 
 services:
   - mongodb
   - neo4j
+
+cache:
+  directories:
+    - ~/.npm
 
 before_install:
   - if [[ `npm -v` != 6* ]]; then npm install -g npm@6; fi

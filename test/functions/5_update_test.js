@@ -1,4 +1,4 @@
-const { Person, Class, driver, chai, expect, int, toNumber } = require('../helper');
+const { Person, Class, neo4j, chai, expect, int, toNumber } = require('../helper');
 
 const getStats = function(results, has_delete = false) {
   return results[has_delete ? 2 : 1].summary.counters._stats
@@ -20,11 +20,11 @@ describe('Mongo4J Updating', () => {
       }
     });
 
-    session = driver.session();
+    session = neo4j.getDriver().session();
   });
 
-  afterEach(() => {
-    session.close();
+  afterEach((done) => {
+    session.close().then(done);
   })
 
   it('Update a simple value in Neo4J & Mongo', (done) => {

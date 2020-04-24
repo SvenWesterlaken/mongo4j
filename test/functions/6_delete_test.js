@@ -1,4 +1,4 @@
-const { Person, Class, driver, chai, expect, int } = require('../helper');
+const { Person, Class, neo4j, chai, expect, int } = require('../helper');
 
 describe('Mongo4J Deletion', () => {
 
@@ -17,11 +17,11 @@ describe('Mongo4J Deletion', () => {
       }
     });
 
-    session = driver.session();
+    session = neo4j.getDriver().session();
   });
 
-  afterEach(() => {
-    session.close();
+  afterEach((done) => {
+    session.close().then(done)
   })
 
   it('Delete a single item', (done) => {
