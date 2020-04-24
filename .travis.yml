@@ -13,9 +13,8 @@ group: deprecated-2017Q4
 
 language: node_js
 node_js:
-  - '9'
-  - '8'
-  - '6'
+  - '10'
+  - '12'
 
 services:
   - mongodb
