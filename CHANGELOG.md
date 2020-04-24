@@ -1,3 +1,10 @@
+# [1.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v0.4.1...v1.0.0) (2020-04-24)
+
+
+### Bug Fixes
+
+* **travis:** remove cache ([5f13dd6](https://github.com/SvenWesterlaken/mongo4j/commit/5f13dd6))
+
 ## [0.4.1](https://github.com/SvenWesterlaken/mongo4j/compare/v0.4.0...v0.4.1) (2019-03-21)
 
 # [0.4.0](https://github.com/SvenWesterlaken/mongo4j/compare/v0.3.0...v0.4.0) (2019-03-15)
