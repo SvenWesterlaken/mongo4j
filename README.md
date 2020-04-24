@@ -3,15 +3,17 @@
 [![Coverage Status](https://coveralls.io/repos/github/SvenWesterlaken/mongo4j/badge.svg?branch=master)](https://coveralls.io/github/SvenWesterlaken/mongo4j?branch=master)
 [![npm](https://img.shields.io/npm/v/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
 [![node](https://img.shields.io/node/v/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
-[![Greenkeeper badge](https://badges.greenkeeper.io/SvenWesterlaken/mongo4j.svg)](https://greenkeeper.io/)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![npm](https://img.shields.io/npm/dt/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
 
 [![NPM](https://nodei.co/npm/mongo4j.png)](https://nodei.co/npm/mongo4j/)
 
 > A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
+
+> **LOOKING FOR MAINTAINERS!!**: Unfortunately, I have other priorities and not that much time to work on this repository. Furthermore, I don't use this package as much as I initially thought so it doesn't have as much value for me anymore.
 >
-> _**Currently in development**_
+> Although this package will not be _actively_ maintained, I try to keep it functional and keep it up-to-date with the dependencies. Therefore, I want to note that **the basic functionalities, described in this documentation should work and behave correctly**. If not, feel free to make an Issue or contribute yourself by having a look at the pull-request.
+>
+> For a list of ideas for features to contribute to, visit the [to-do-list](#upcoming-features--to-do-list).
 
 ## Table of contents
 - [Installation](#installation)
@@ -22,9 +24,12 @@
 - [Schema configuration options](#schema-configuration-options)
   - [Standard Properties](#standard-properties)
   - [Relationships (References, Nested References & Subdocuments)](#relationships-references-nested-references--subdocuments)
-- [Saving](#saving)
-- [Updating](#updating)
-- [Removing](#removing)
+- [Document Lifecycle](#document-lifecycle)
+  - [Saving](#saving)
+  - [Updating](#updating)
+  - [Removing](#removing)
+- [Methods](#methods)
+  - [Static](#static)
 - [Upcoming features & to-do-list](#upcoming-features--to-do-list)
 - [Credits](#credits)
 
@@ -41,7 +46,7 @@ Although mongo4j doesn't cover changes outside the mongoose context [_yet_](http
 
 Download and install the package with npm:
 ```bash
-npm install -save mongo4j
+npm install --save mongo4j
 ```
 
 ## Setup
@@ -105,7 +110,7 @@ mongo4j.init(
 );
 ```
 
-Authentication can be specified as an second argument to use the same authentication for all drivers. Authentication set per host will override these global authentication settings.
+Authentication can be specified as a second argument to use the same authentication for all drivers. Authentication set per host will override these global authentication settings.
 
 The same goes for options. If you only want to use shared options, make sure you pass `null` as a second argument:
 
@@ -195,7 +200,9 @@ const ClassSchema = new Schema({
 });
 ```
 
-## Saving
+## Document lifecycle
+
+### Saving
 
 Saving a mongo-document in neo4j is executed as you would normally. Therefore, return values will still be the same as without mongo4j. Post hooks of `Document.save()` & `Model.insertMany()` will cause the saved document(s) to be saved in neo4j as well.
 
@@ -224,9 +231,9 @@ const jason = new Person({firstName: "Jason", lastName: "Campbell"});
 Person.insertMany([daniel, jason, henry]);
 ```
 
-## Updating
+### Updating
 
-Unfortunately, mongoose doesn't supply a direct way of accessing data in update hooks. Therefore a custom method on the document will be used that will both handle the saving in mongodb and neo4j. It can be seen as wrapper around the original `Document.updateOne()` method.
+Unfortunately, mongoose doesn't supply a direct way of accessing data in update hooks. Therefore a custom method on the document will be used that will both handle the saving in mongodb and neo4j. It can be seen as a wrapper around the original `Document.updateOne()` method.
 
 #### Document.updateNeo(criteria, options, cb)
 - **Note**: parameters are identical to that of `Model.updateOne()`. Detailed documentation can therefore be found [here](https://mongoosejs.com/docs/api.html#document_Document-updateOne).
@@ -256,8 +263,7 @@ person.updateOne({firstName: 'Peter', lastName: 'Traverson'}).then((results) => 
 });
 ```
 
-
-## Removing
+### Removing
 
 Removing a mongo-document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well (including subdocuments & relationships).
 
@@ -266,22 +272,82 @@ Removing a mongo-document in neo4j is executed as you would normally. Post hooks
 neil.remove()
 ```
 
+## Methods
+### Static
+These methods can be called without an instance of an object. In other words, straight from the model.
+
+#### Model.cypherQuery(query, params, options)
+- `criteria`: Cyper to execute in string format.
+- `params`: parameters of the query. More info on this on the neo4j [driver-manual](https://neo4j.com/docs/driver-manual/current/cypher-workflow/#driver-queries-results)
+- `options`: Object with the following options for the query:
+  - `sub`: Return a subscription. Can be used as explained [here](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-streaming-api). Defaults to `false`
+  - `parse`: Parse result with [parse-neo4j](https://www.npmjs.com/package/parse-neo4j). This is only available in the case of a Promise. If both options are `true` the query will throw an error. Defaults to `false`
+
+**Returns:** a `Promise` with the result of the [cypher query](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-promise-api).
+
+**Note**: The session is automatically closed after the query, _**only in the case of a promise**_.
+
+```javascript
+const Person = require('./models/person');
+
+// Basic usage with a cypher query
+Person.cypherQuery('MATCH (n:Person)-[r:Takes_Class]-(c:Class) return n;')
+  .then(result => {
+    result.records.forEach(record => {
+      console.log(record.get('name'))
+    })
+  })
+  .catch(error => {
+    console.log(error)
+  })
+```
+```javascript
+// Run query with parse on for the result & using parameters for the query
+Person.cypherQuery('MATCH (n:Person {name: {nameParam} }) RETURN n;', {nameParam: 'James'}, { parse: true });
+  .then(result => {
+    result.records.forEach(record => {
+      console.log(record.get('name'))
+    })
+  })
+  .catch(error => {
+    console.log(error)
+  })
+```
+```javascript
+// Run query with sub on to handle the cypher query with the stream api
+Person.cypherQuery('MATCH (n:Person) RETURN n;', { sub: true })
+  .subscribe({
+    onKeys: keys => {
+      console.log(keys)
+    },
+    onNext: record => {
+      console.log(record.get('name'))
+    },
+    onCompleted: () => {
+      session.close() // returns a Promise
+    },
+    onError: error => {
+      console.log(error)
+    }
+  })
+```
+
 ## Upcoming features & to-do-list
-This plugin is still in early development so not all features are yet implemented unfortunately.
-I'm trying my best to finish these features as fast as possible.
-This is also the reason there are only pre-releases yet.
+Unfortunately I don't have much time for keeping this repo up-to-date. However, from time to time I will try to keep the repo at least functioning. Right now all of the functionality described are functional. These should cover the basic needs for scenarios where this package is used.
+
+**Feel free to contribute by picking something from the to-do-list below and makinga pull-request!**
+_I will check these every now and then_
 
 #### To-do-list:
 
 - Wrappers around static functions of a model (adding, updating & deleting)
-- **Documentation** (_currently in progress_)
+- Documentation
 - Code documentation
 - Creating a wiki or documentation website
-- **Tests** (_currently in progress_)
+- Tests
 - Debug Mode (ie. show neo4j query's)
 - Helper functions for neo4j access
 - State hooks
-<!-- - Plugin for subdocuments -->
 
 ## Credits
 
