@@ -38,7 +38,7 @@ describe('Simple Cypher queries', () => {
         ])).notify(done);
     });
 
-    it('Should return an parced array of neo4j documents', (done) => {
+    it('Should return a parced array of neo4j documents', (done) => {
         const query = 'MATCH (n:Person) RETURN n;';
         const result = Person.cypherQuery(query, { parse: true });
 

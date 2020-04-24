@@ -46,7 +46,7 @@
   "author": "Sven Westerlaken",
   "license": "MIT",
   "engines": {
-    "node": ">=6.13.1"
+    "node": ">=10"
   },
   "dependencies": {
     "lodash": "^4.17.15",
@@ -85,7 +85,7 @@
       "releaseRules": [
         {
           "type": "doc",
-          "scope": "README",	
+          "scope": "README",
           "release": "patch"
         },
         {
