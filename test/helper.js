@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const neo4j = require('../lib/neo4j');
 
-const int = require('neo4j-driver').v1.int;
-const toNumber = require('neo4j-driver').v1.integer.toNumber;
-
-const driver = neo4j.getDriver();
+const int = require('neo4j-driver').int;
+const toNumber = require('neo4j-driver').integer.toNumber;
 
 const Person = require('./models/person');
 const Class = require('./models/class');
@@ -24,14 +22,15 @@ before((done) => {
 
 beforeEach((done) => {
   // Drop all mongo documents & Neo4j Nodes before each test
-  const session = driver.session();
+  const session = neo4j.getDriver().session();
   Promise.all([Person.deleteMany({}), Class.deleteMany({}), session.run("MATCH (n) DETACH DELETE n")])
-    .then(() => { session.close(); done(); })
+    .then(session.close)
+    .then(done)
     .catch((err) => done(err));
 });
 
-after(() => {
-  neo4j.close();
+after((done) => {
+  neo4j.close().then(done);
 });
 
 // Chai Setup
@@ -46,7 +45,6 @@ chai.use(require('chai-as-promised'));
 module.exports = {
   chai,
   expect,
-  driver,
   Person,
   Class,
   neo4j,

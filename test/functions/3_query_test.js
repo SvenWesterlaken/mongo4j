@@ -1,22 +1,16 @@
-const { Person, neo4j, driver, chai, expect } = require('../helper');
+const { Person, neo4j, chai, expect } = require('../helper');
 const neo4jUri = process.env.NEO_URI || "bolt://127.0.0.1";
 
 describe('Simple Cypher queries', () => {
-    before('reset the neo4j driver', (done) => {
-      neo4j.reset();
-      neo4j.init(neo4jUri, {user: 'neo4j', pass: 'new'});
-      done();
-    });
 
     beforeEach('Add 2 nodes to neo4j', (done) => {
-        let session = neo4j.getDriver().session();
+      const session = neo4j.getDriver().session();
         session.run('CREATE ' +
                     '(j:Person {name : {james} }), ' +
                     '(n:Person {name : {neil} }) ' +
                     'RETURN j,n;', {james: 'James', neil: 'Neil'})
         .then(() => {
-            session.close()
-            done();
+            session.close().then(done);
         });
     });
 

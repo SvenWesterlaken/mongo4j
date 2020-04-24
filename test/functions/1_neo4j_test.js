@@ -6,22 +6,26 @@ const neo4jUri = process.env.NEO_URI || "bolt://127.0.0.1";
 
 describe("Neo4J driver management", () => {
 
-  afterEach(() => neo4j.reset());
-  after(() => neo4j.init(neo4jUri, {user: 'neo4j', pass: 'new'}));
+  beforeEach((done) => { neo4j.reset().then(done) });
+  afterEach((done) => { neo4j.reset().then(done) });
+  afterEach(() => neo4j.init(neo4jUri, {user: 'neo4j', pass: 'new'}));
 
   //----------------------------------------
   // Reset functionality
   //----------------------------------------
 
-  it('Should reset with single driver', () => {
+  it('Should reset with single driver', (done) => {
+    neo4j.init();
 
     expect(neo4j.driver).to.not.be.undefined;
     expect(neo4j.drivers).to.be.undefined;
 
-    neo4j.reset();
+    neo4j.reset().then(() => {
+      expect(neo4j.driver).to.be.undefined;
+      expect(neo4j.driver).to.be.undefined;
+      done();
+    });
 
-    expect(neo4j.driver).to.be.undefined;
-    expect(neo4j.driver).to.be.undefined;
   });
 
   it('Should reset with multiple drivers', () => {
