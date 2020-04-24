@@ -20,10 +20,6 @@ services:
   - mongodb
   - neo4j
 
-cache:
-  directories:
-    - ~/.npm
-
 before_install:
   - if [[ `npm -v` != 6* ]]; then npm install -g npm@6; fi
 
