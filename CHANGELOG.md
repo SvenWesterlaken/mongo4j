@@ -1,3 +1,20 @@
+# [2.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v1.0.0...v2.0.0) (2020-04-24)
+
+
+### Bug Fixes
+
+* **neo4j:** add handling for promisified closing ([b248bd4](https://github.com/SvenWesterlaken/mongo4j/commit/b248bd41d77224e0fcc1c656b17724018ee26ad6))
+* **npm:** add readme doc update as patch release ([8eb3166](https://github.com/SvenWesterlaken/mongo4j/commit/8eb31661fa6735ece0e6a4532501b4af555ceef5))
+* **package:** update coveralls & remove unused mocha-mongo ([1c9f5e1](https://github.com/SvenWesterlaken/mongo4j/commit/1c9f5e1c728c8e261248389606f65a8fda0d559b))
+* **packages:** update packages to newest compatible versions ([33fbfff](https://github.com/SvenWesterlaken/mongo4j/commit/33fbfffbe25a26e401ce3e144ba94a7dbd851688))
+* **travis:** add back caching ([887ab26](https://github.com/SvenWesterlaken/mongo4j/commit/887ab2612b2d1b11fe6e2c2de5bba4241e5480a8))
+
+
+### BREAKING CHANGES
+
+* **neo4j:** closing a `session.close()` or `neo4j.close()` now always returns a Promise.
+* **neo4j:** requires node 10
+
 # [1.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v0.4.1...v1.0.0) (2020-04-24)
 
 
