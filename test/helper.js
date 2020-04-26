@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 before((done) => {
   // Connect to mongo
   if(mongoose.connection.readyState == 0) {
-    mongoose.connect(`mongodb://${mongoUri}:27017/moneo-test`).then(() => done());
+    mongoose.connect(`mongodb://${mongoUri}:27017/moneo-test`, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => done());
   } else {
     done();
   }
