@@ -11,7 +11,7 @@
 
 > **LOOKING FOR MAINTAINERS!!**: Unfortunately, I have other priorities and not that much time to work on this repository. Furthermore, I don't use this package as much as I initially thought so it doesn't have as much value for me anymore.
 >
-> Although this package will not be _actively_ maintained, I try to keep it functional and keep it up-to-date with the dependencies. Therefore, I want to note that **the basic functionalities, described in this documentation should work and behave correctly**. If not, feel free to make an Issue or contribute yourself by having a look at the pull-request.
+> Although this package will not be _actively_ maintained, I try to keep it functional and up-to-date with the dependencies. Therefore, I want to note that **the basic functionalities, described in this documentation should work and behave correctly**. If not, feel free to make an issue or contribute yourself by having a look at the pull-requests.
 >
 > For a list of ideas for features to contribute to, visit the [to-do-list](#upcoming-features--to-do-list).
 
@@ -40,7 +40,7 @@ of neo4j while still maintaining documents in mongodb for quick access and savin
 
 These are great solutions, but I've found myself not fully satisfied by these. The doc manager, for example, needs another application layer to install and run it. The other two solutions were either out of date or needed a manual form of maintaining the graphs in neo4j. That's why I decided to give my own ideas a shot in the form of a mongoose plugin.
 
-Although mongo4j doesn't cover changes outside the mongoose context [_yet_](https://docs.mongodb.com/manual/changeStreams/), it still automatically updates, removes and adds graphs according to the given schema configuration. In addition to this it adds extra functions to access the graphs from the models through mongoose. This way, there is no need to keep two different approaches to the neo4j-database.
+Mongo4J automatically updates, removes and adds graphs according to the given schema configuration. In addition to this it adds extra functions to access the graphs from the models through mongoose. This way, there is no need to keep two different approaches to the neo4j-database.
 
 ## Installation
 
@@ -51,13 +51,11 @@ npm install --save mongo4j
 
 ## Setup
 
-Before you use (require) mongo4j anywhere. **First initialize it with drivers.**
+Before you use (require) mongo4j anywhere, **First initialize it with drivers**.
 
 This creates the singleton pattern lifecycle of driver(s) stated by the [neo4j-driver library](https://github.com/neo4j/neo4j-javascript-driver#usage-examples).
 
-Same options can be used as the official driver and there is the possibility of initializing multiple drivers in the beginning. Which should be **only one driver per neo4j database**.
-
-Options can be found on the neo4j driver [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver).
+Same options can be used as the official driver and there is the possibility of initializing multiple drivers in the beginning. Which should be **only one driver per neo4j database**. Options can be found on the neo4j driver [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver).
 
 ### Single driver
 
@@ -117,13 +115,14 @@ The same goes for options. If you only want to use shared options, make sure you
 ```javascript
 const mongo4j = require('mongo4j');
 
+// connectionPoolSize is set for both driver
 mongo4j.init([host1, host2], null, {connectionPoolSize: 100});
 ```
 
 ### Add the plugin to the schema
 
 #### CustomSchema.plugin(moneo.plugin(identifier))
-- `identifier` - Identifier to reference the specific driver to use _(in case of multiple drivers)_
+- `identifier` - Identifier to reference the specific driver to use _(in case of multiple drivers)_.
 
 ```javascript
 // Use the default driver connection (in case of one driver)
@@ -131,6 +130,62 @@ PersonSchema.plugin(mongo4j.plugin());
 
 // Use the 'testconnection1' driver to connect to neo4j
 PersonSchema.plugin(mongo4j.plugin('testconnection1'))
+```
+
+## Driver management
+These functions will help manage the drivers for neo4j.
+
+#### mongo4j.getDriver(identifier)
+- `identifier` - Identifier to reference the specific driver. Can also be an integer in case of mulitple drivers. **Required in case of multiple drivers**
+
+**Returns:** a driver. In the case of multiple drivers. It will return an `Object` like:
+```javascript
+{
+  name: 'testconnection1', // Identifier
+  driver: //Neo4JDriver
+}
+```
+
+```javascript
+// Get driver in case of only one
+mongo4j.getDriver();
+
+// Get testconnection1 driver in case of multiple
+mongo4j.getDriver('testconnection1');
+
+// Get testconnection1 driver in case of multiple with integer identifier
+// NOTE: identifier = index + 1
+mongo4j.getDriver(1);
+```
+
+#### mongo4j.close(identifier)
+- `identifier` - Identifier to reference the specific driver. Can also be an integer in case of mulitple drivers or `true` to close all drivers at once. **Required in case of multiple drivers**
+
+**Returns:** a single `Promise` (also in case of multiple drivers).
+
+```javascript
+// Close driver in case of only one
+mongo4j.close();
+
+// Close testconnection1 driver in case of multiple
+mongo4j.close('testconnection1');
+
+// Close testconnection1 driver in case of multiple with integer identifier
+// NOTE: identifier = index + 1
+mongo4j.close(1);
+
+// Close all drivers in case of multiple
+mongo4j.close(true);
+```
+
+#### mongo4j.reset()
+- closes all drivers & sets driver(s) to undefined in the mongo4j context.
+
+**Returns:** a single `Promise` (also in case of multiple drivers).
+
+```javascript
+// Close driver in case of only one
+mongo4j.reset();
 ```
 
 ## Schema configuration options
@@ -173,6 +228,7 @@ const ClassSchema = new Schema({
   }
 });
 
+// NOTE: CLASS refers to class mongo model, not an actual Javascript class.
 // Results in 'SUPERVISOR_CLASS_PERSON' relationship (including a start_date property)
 const ClassSchema = new Schema({
   supervisor: {
@@ -265,7 +321,7 @@ person.updateOne({firstName: 'Peter', lastName: 'Traverson'}).then((results) => 
 
 ### Removing
 
-Removing a mongo-document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well (including subdocuments & relationships).
+Removing a mongo-document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well (including subdocuments & relationships; not the related docs, ofcourse).
 
 ```javascript
 // Remove 'neil' from neo4j as well as mongo
@@ -277,15 +333,15 @@ neil.remove()
 These methods can be called without an instance of an object. In other words, straight from the model.
 
 #### Model.cypherQuery(query, params, options)
-- `criteria`: Cyper to execute in string format.
-- `params`: parameters of the query. More info on this on the neo4j [driver-manual](https://neo4j.com/docs/driver-manual/current/cypher-workflow/#driver-queries-results)
+- `query`: Cypher query to execute in string format.
+- `params`: Parameters of the query. More info on this in the neo4j [driver-manual](https://neo4j.com/docs/driver-manual/current/cypher-workflow/#driver-queries-results)
 - `options`: Object with the following options for the query:
   - `sub`: Return a subscription. Can be used as explained [here](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-streaming-api). Defaults to `false`
   - `parse`: Parse result with [parse-neo4j](https://www.npmjs.com/package/parse-neo4j). This is only available in the case of a Promise. If both options are `true` the query will throw an error. Defaults to `false`
 
-**Returns:** a `Promise` with the result of the [cypher query](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-promise-api).
+**Returns:** a `Promise` with the result of the [cypher query](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-promise-api). _or a subscription in case of sub options set to `true`._
 
-**Note**: The session is automatically closed after the query, _**only in the case of a promise**_.
+**Note**: The session is automatically closed after the query, _**only in the case of a promise!**_
 
 ```javascript
 const Person = require('./models/person');
@@ -332,10 +388,13 @@ Person.cypherQuery('MATCH (n:Person) RETURN n;', { sub: true })
   })
 ```
 
+## Examples
+For examples, refer to the [test cases](test/functions/) for now.
+
 ## Upcoming features & to-do-list
 Unfortunately I don't have much time for keeping this repo up-to-date. However, from time to time I will try to keep the repo at least functioning. Right now all of the functionality described are functional. These should cover the basic needs for scenarios where this package is used.
 
-**Feel free to contribute by picking something from the to-do-list below and makinga pull-request!**
+**Feel free to contribute by picking something from the to-do-list below and making a pull-request!**
 _I will check these every now and then_
 
 #### To-do-list:
@@ -348,6 +407,7 @@ _I will check these every now and then_
 - Debug Mode (ie. show neo4j query's)
 - Helper functions for neo4j access
 - State hooks
+- Work with the new reactive sessions from neo4j
 
 ## Credits
 
