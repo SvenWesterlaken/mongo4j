@@ -102,5 +102,10 @@
       "@semantic-release/npm",
       "@semantic-release/git"
     ]
+  },
+  "mocha": {
+    "recursive": true,
+    "exit": true,
+    "require": "./test/prep.js"
   }
 }
