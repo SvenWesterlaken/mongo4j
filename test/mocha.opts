@@ -1,3 +1,0 @@
---recursive
---exit
--r ./test/prep.js
