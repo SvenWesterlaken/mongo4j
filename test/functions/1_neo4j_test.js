@@ -273,4 +273,32 @@ describe("Neo4J driver management", () => {
     expect(() => neo4j.close()).to.throw('No drivers have yet been initialized, do so by calling: init()');
   });
 
+  it('Should return an error if close is called without identifier in case of multiple drivers', (done) => {
+    neo4j.init([{
+      name: 'testconnection1',
+      url: neo4jUri
+    }, {
+      name: 'testconnection2',
+      url: neo4jUri
+    }]);
+
+    expect(() => neo4j.close()).to.throw('You initiated more than one driver, which means you need to provide an identifier (String or Integer)');
+    done();
+  });
+
+  it('Should return a array of promises if close is called with `true` as identifier in case of multiple drivers', () => {
+    neo4j.init([{
+      name: 'testconnection1',
+      url: neo4jUri
+    }, {
+      name: 'testconnection2',
+      url: neo4jUri
+    }]);
+
+    const result = neo4j.close(true);
+
+    expect(result).to.be.a('promise');
+
+  });
+
 });
