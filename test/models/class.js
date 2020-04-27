@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const moneo = require('../../index.js');
+const mongo4j = require('../../index.js');
 
 const BookSchema = new Schema({
   title: {
@@ -40,7 +40,7 @@ const ClassSchema = new Schema({
     books: [BookSchema]
 });
 
-ClassSchema.plugin(moneo.plugin());
+ClassSchema.plugin(mongo4j.plugin());
 
 const Class = mongoose.model('class', ClassSchema);
 

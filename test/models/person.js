@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const moneo = require('../../index.js');
+const mongo4j = require('../../index.js');
 
 const AddressSchema = new Schema({
   city: {
@@ -42,7 +42,7 @@ const PersonSchema = new Schema({
   address: AddressSchema
 });
 
-PersonSchema.plugin(moneo.plugin());
+PersonSchema.plugin(mongo4j.plugin());
 
 const Person = mongoose.model('person', PersonSchema);
 
