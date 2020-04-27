@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/SvenWesterlaken/mongo4j/compare/v2.0.0...v2.1.0) (2020-04-26)
+
+
+### Bug Fixes
+
+* **neo4j:** refactor & fix neo4j driver access & closing ([dbf59eb](https://github.com/SvenWesterlaken/mongo4j/commit/dbf59eb290afbd98be3b1622ce81629fcade6007))
+
+
+### Features
+
+* **core:** make driver management available from core ([a875d21](https://github.com/SvenWesterlaken/mongo4j/commit/a875d216653fada04e75c6ae92c5d765efbb0a34))
+* **neo4j:** add extra logic & checking for closing all drivers at once ([f71abf3](https://github.com/SvenWesterlaken/mongo4j/commit/f71abf388c9a160f0918a13d30cf307dd060ec38))
+
 # [2.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v1.0.0...v2.0.0) (2020-04-24)
 
 
