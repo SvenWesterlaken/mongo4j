@@ -9,9 +9,7 @@
 
 > A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
 
-> **LOOKING FOR MAINTAINERS!!**: Unfortunately, I have other priorities and not that much time to work on this repository. Furthermore, I don't use this package as much as I initially thought so it doesn't have as much value for me anymore.
->
-> Although this package will not be _actively_ maintained, I try to keep it functional and up-to-date with the dependencies. Therefore, I want to note that **the basic functionalities, described in this documentation should work and behave correctly**. If not, feel free to make an issue or contribute yourself by having a look at the pull-requests.
+> Although this package will not be _actively_ maintained, I try to keep it functional and up-to-date with the dependencies. Therefore, I want to note that **the basic functionalities, described in this documentation, should work and behave correctly**. If not, feel free to make an issue or contribute yourself by having a look at the pull-requests.
 >
 > For a list of ideas for features to contribute to, visit the [to-do-list](#upcoming-features--to-do-list).
 
@@ -21,6 +19,7 @@
   - [Single driver](#single-driver)
   - [Multiple drivers](#multiple-drivers)
   - [Add the plugin to the schema](#add-the-plugin-to-the-schema)
+- [Driver Management](#driver-management)
 - [Schema configuration options](#schema-configuration-options)
   - [Standard Properties](#standard-properties)
   - [Relationships (References, Nested References & Subdocuments)](#relationships-references-nested-references--subdocuments)
@@ -35,8 +34,7 @@
 
 ## Why Mongo4j?
 
-The usage of mongo4j is found in the term [polyglot persistence](https://en.wikipedia.org/wiki/Polyglot_persistence). In this case you will most likely want to combine the 'relationship-navigation'
-of neo4j while still maintaining documents in mongodb for quick access and saving all information. Unfortunately this also brings in extra maintenance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
+The usage of mongo4j is found in the term [polyglot persistence](https://en.wikipedia.org/wiki/Polyglot_persistence). In this case you will most likely want to combine the 'relationship-navigation' of neo4j while still maintaining documents in mongodb for quick access and saving all information. Unfortunately this also brings in extra maintenance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
 
 These are great solutions, but I've found myself not fully satisfied by these. The doc manager, for example, needs another application layer to install and run it. The other two solutions were either out of date or needed a manual form of maintaining the graphs in neo4j. That's why I decided to give my own ideas a shot in the form of a mongoose plugin.
 
@@ -136,7 +134,7 @@ PersonSchema.plugin(mongo4j.plugin('testconnection1'))
 These functions will help manage the drivers for neo4j.
 
 #### mongo4j.getDriver(identifier)
-- `identifier` - Identifier to reference the specific driver. Can also be an integer in case of mulitple drivers. **Required in case of multiple drivers**
+- `identifier` - Identifier to reference the specific driver. Can also be an integer. **Required in case of multiple drivers**
 
 **Returns:** a driver. In the case of multiple drivers. It will return an `Object` like:
 ```javascript
@@ -159,7 +157,7 @@ mongo4j.getDriver(1);
 ```
 
 #### mongo4j.close(identifier)
-- `identifier` - Identifier to reference the specific driver. Can also be an integer in case of mulitple drivers or `true` to close all drivers at once. **Required in case of multiple drivers**
+- `identifier` - Identifier to reference the specific driver. Can also be an integer or `true` to close all drivers at once. **Required in case of multiple drivers**
 
 **Returns:** a single `Promise` (also in case of multiple drivers).
 
@@ -179,12 +177,10 @@ mongo4j.close(true);
 ```
 
 #### mongo4j.reset()
-- closes all drivers & sets driver(s) to undefined in the mongo4j context.
-
 **Returns:** a single `Promise` (also in case of multiple drivers).
 
 ```javascript
-// Close driver in case of only one
+// Close all drivers and set drivers to undefined in mongo4j context
 mongo4j.reset();
 ```
 
@@ -216,7 +212,7 @@ Therefore there are several options to configure how to relationship is saved.
 
 #### neo_rel_name: `String`
 - Defaults to `[PROPERTY NAME]_[DOCUMENT TYPE]_[RELATED DOCUMENT TYPE]`. ie: `SUPERVISOR_CLASS_PERSON`
-- **Note:** relationships will be converted to uppercase to conform to the neo4j naming conventions
+- **Note:** relationships will be converted to uppercase to conform to the neo4j naming conventions.
 
 ```javascript
 // Results in 'TAUGHT_BY' relationship
@@ -300,7 +296,7 @@ Unfortunately, mongoose doesn't supply a direct way of accessing data in update 
 **Returns:** a promise with a result of an array containing (in order):
 - Result of the updateOne method. See [documentation](https://mongoosejs.com/docs/api.html#document_Document-updateOne)
 - Result of the cypher update query
-- Result of the cypher query that deleted all the previous relationships. **(If not executed this will be null)**. Why this query is executed is explained [here](#upcoming-features--to-do-list)
+- Result of the cypher query that deleted all the previous relationships. **(If not executed this will be null)**. Why this query is executed is explained [here (not written yet)](#upcoming-features--to-do-list).
 
 ```javascript
 // variable `person` refers to a document fetched from the database or returned as a result after saving
@@ -392,7 +388,7 @@ Person.cypherQuery('MATCH (n:Person) RETURN n;', { sub: true })
 For examples, refer to the [test cases](test/functions/) for now.
 
 ## Upcoming features & to-do-list
-Unfortunately I don't have much time for keeping this repo up-to-date. However, from time to time I will try to keep the repo at least functioning. Right now all of the functionality described are functional. These should cover the basic needs for scenarios where this package is used.
+Unfortunately, I don't have much time for keeping this repo up-to-date. However, from time to time I will try to have a look and see where I can fix or expand features. Right now all of the functionality described should work correctly and should cover the basic needs for scenarios where this package would be used.
 
 **Feel free to contribute by picking something from the to-do-list below and making a pull-request!**
 _I will check these every now and then_
