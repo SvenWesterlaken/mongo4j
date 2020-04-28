@@ -134,7 +134,7 @@ PersonSchema.plugin(mongo4j.plugin('testconnection1'))
 These functions will help manage the drivers for neo4j.
 
 #### mongo4j.getDriver(identifier)
-- `identifier` - Identifier to reference the specific driver. Can also be an integer in case of mulitple drivers. **Required in case of multiple drivers**
+- `identifier` - Identifier to reference the specific driver. Can also be an integer. **Required in case of multiple drivers**
 
 **Returns:** a driver. In the case of multiple drivers. It will return an `Object` like:
 ```javascript
@@ -157,7 +157,7 @@ mongo4j.getDriver(1);
 ```
 
 #### mongo4j.close(identifier)
-- `identifier` - Identifier to reference the specific driver. Can also be an integer in case of mulitple drivers or `true` to close all drivers at once. **Required in case of multiple drivers**
+- `identifier` - Identifier to reference the specific driver. Can also be an integer or `true` to close all drivers at once. **Required in case of multiple drivers**
 
 **Returns:** a single `Promise` (also in case of multiple drivers).
 
