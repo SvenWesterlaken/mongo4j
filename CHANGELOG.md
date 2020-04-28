@@ -1,3 +1,5 @@
+## [2.1.1](https://github.com/SvenWesterlaken/mongo4j/compare/v2.1.0...v2.1.1) (2020-04-28)
+
 # [2.1.0](https://github.com/SvenWesterlaken/mongo4j/compare/v2.0.0...v2.1.0) (2020-04-26)
 
 
