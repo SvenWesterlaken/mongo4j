@@ -14,7 +14,7 @@
 > For a list of ideas for features to contribute to, visit the [to-do-list](#upcoming-features--to-do-list).
 
 ## Table of contents
-- [Motivation]
+- [Motivation](#motivation---why-mongo4j-another-library)
 - [Installation](#installation)
 - [Setup](#setup)
   - [Single driver](#single-driver)
