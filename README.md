@@ -14,6 +14,7 @@
 > For a list of ideas for features to contribute to, visit the [to-do-list](#upcoming-features--to-do-list).
 
 ## Table of contents
+- [Motivation]
 - [Installation](#installation)
 - [Setup](#setup)
   - [Single driver](#single-driver)
@@ -34,7 +35,7 @@
 - [Upcoming features & to-do-list](#upcoming-features--to-do-list)
 - [Credits](#credits)
 
-## Why Mongo4j?
+## Motivation - Why Mongo4J, another library?
 
 The usage of mongo4j is found in the term [polyglot persistence](https://en.wikipedia.org/wiki/Polyglot_persistence). In this case you will most likely want to combine the 'relationship-navigation' of neo4j while still maintaining documents in mongodb for quick access and saving all information. Unfortunately this also brings in extra maintenance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
 
