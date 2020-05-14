@@ -29,6 +29,8 @@
   - [Removing](#removing)
 - [Methods](#methods)
   - [Static](#static)
+- [Examples](#examples)
+- [FAQ](#why-is-there-a-deletion-query-in-the-update-function)
 - [Upcoming features & to-do-list](#upcoming-features--to-do-list)
 - [Credits](#credits)
 
