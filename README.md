@@ -302,7 +302,7 @@ Unfortunately, mongoose doesn't supply a direct way of accessing data in update 
 // variable `person` refers to a document fetched from the database or returned as a result after saving
 
 // Update the firstname to 'Peter' and lastname to 'Traverson'.
-person.updateOne({firstName: 'Peter', lastName: 'Traverson'}).then((results) => {
+person.updateNeo({firstName: 'Peter', lastName: 'Traverson'}).then((results) => {
   // First item of the array is the result of the update query by mongoose
   let mongoUpdateResult = results[0];
 
@@ -386,6 +386,12 @@ Person.cypherQuery('MATCH (n:Person) RETURN n;', { sub: true })
 
 ## Examples
 For examples, refer to the [test cases](test/functions/) for now.
+
+## FAQ
+### Why is there a deletion query in the update function?
+After trying a couple of times, I couldn't find a consistent way of determining what nodes or relationships have changed and to what.
+At the time (may still be) the data also couldn't fit into a single query.
+In order to maintain flexibility and speed a delete query has been added before refilling the neo4j database with the new relationships, nodes & data.
 
 ## Upcoming features & to-do-list
 Unfortunately, I don't have much time for keeping this repo up-to-date. However, from time to time I will try to have a look and see where I can fix or expand features. Right now all of the functionality described should work correctly and should cover the basic needs for scenarios where this package would be used.
