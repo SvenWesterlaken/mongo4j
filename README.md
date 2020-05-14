@@ -37,11 +37,11 @@
 
 ## Motivation - Why Mongo4J, another library?
 
-The usage of mongo4j is found in the term [polyglot persistence](https://en.wikipedia.org/wiki/Polyglot_persistence). In this case you will most likely want to combine the 'relationship-navigation' of neo4j while still maintaining documents in mongodb for quick access and saving all information. Unfortunately this also brings in extra maintenance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
+The usage of mongo4j is found in the term [polyglot persistence](https://en.wikipedia.org/wiki/Polyglot_persistence). In this case, you will most likely want to combine the 'relationship-navigation' of neo4j while still maintaining documents in MongoDB for quick access and saving all information. Unfortunately, this also brings in extra maintenance to keep both databases in-sync. For this matter, several plugins and programs have been written, under which [moneo](https://github.com/srfrnk/moneo), [neo4j-doc-manager](https://neo4j.com/developer/neo4j-doc-manager/) & [neomongoose](https://www.npmjs.com/package/neomongoose).
 
 These are great solutions, but I've found myself not fully satisfied by these. The doc manager, for example, needs another application layer to install and run it. The other two solutions were either out of date or needed a manual form of maintaining the graphs in neo4j. That's why I decided to give my own ideas a shot in the form of a mongoose plugin.
 
-Mongo4J automatically updates, removes and adds graphs according to the given schema configuration. In addition to this it adds extra functions to access the graphs from the models through mongoose. This way, there is no need to keep two different approaches to the neo4j-database.
+Mongo4J automatically updates, removes and adds graphs according to the given schema configuration. In addition to this, it adds extra functions to access the graphs from the models through mongoose. This way, there is no need to keep two different approaches to the neo4j-database.
 
 ## Installation
 
@@ -89,7 +89,7 @@ mongo4j.init('bolt://localhost', {user: 'neo4j', pass: 'neo4j'});
   - `pass` - Password for neo4j authentication. Defaults to `neo4j`
 - `options` - Options for neo4j driver. These can be found in the [documentation](https://neo4j.com/docs/api/javascript-driver/current/function/index.html#static-function-driver). _Will be overwritten by individual options set in hosts_
 
-In the case of multiple drivers make sure you initialize every driver with an identifier (name) in string format for later re-use, otherwise an error will be thrown.
+In the case of multiple drivers make sure you initialize every driver with an identifier (name) in string format for later re-use, otherwise, an error will be thrown.
 
 ```javascript
 const mongo4j = require('mongo4j');
@@ -189,7 +189,7 @@ mongo4j.reset();
 
 ## Schema configuration options
 
-After you have added mongo4j as a plugin to your documentschema there are several properties to configure which and how data of the document is saved in neo4j.
+After you have added mongo4j as a plugin to your document schema there are several properties to configure which and how data of the document is saved in neo4j.
 
 ### Standard Properties
 These options apply to simple schema properties.
@@ -197,7 +197,7 @@ These options apply to simple schema properties.
 #### neo_prop: `Boolean`
 - Defaults to `false`.
 - If set to `true` this property will be saved in neo4j.
-- **Note:** the `_id` property in mongodb will automatically be added as `m_id` in neo4j.
+- **Note:** the `_id` property in MongoDB will automatically be added as `m_id` in neo4j.
 
 ```javascript
 // Save firstName as a property in neo4j
@@ -275,20 +275,20 @@ neil = new Person({
   }
 });
 
-// Save 'neil' as a node in neo4j (as well as mongodb) according to the schema configuration
+// Save 'neil' as a node in neo4j (as well as MongoDB) according to the schema configuration
 neil.save();
 
 const henry = new Person({firstName: "Henry", lastName: "McCoverty"});
 const daniel = new Person({firstName: "Daniel", lastName: "Durval"});
 const jason = new Person({firstName: "Jason", lastName: "Campbell"});
 
-// Save all three persons in neo4j as well as mongodb
+// Save all three persons in neo4j as well as MongoDB
 Person.insertMany([daniel, jason, henry]);
 ```
 
 ### Updating
 
-Unfortunately, mongoose doesn't supply a direct way of accessing data in update hooks. Therefore a custom method on the document will be used that will both handle the saving in mongodb and neo4j. It can be seen as a wrapper around the original `Document.updateOne()` method.
+Unfortunately, mongoose doesn't supply a direct way of accessing data in update hooks. Therefore a custom method on the document will be used that will both handle the saving in MongoDB and neo4j. It can be seen as a wrapper around the original `Document.updateOne()` method.
 
 #### Document.updateNeo(criteria, options, cb)
 - **Note**: parameters are identical to that of `Model.updateOne()`. Detailed documentation can therefore be found [here](https://mongoosejs.com/docs/api.html#document_Document-updateOne).
@@ -320,7 +320,7 @@ person.updateNeo({firstName: 'Peter', lastName: 'Traverson'}).then((results) => 
 
 ### Removing
 
-Removing a mongo-document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well (including subdocuments & relationships; not the related docs, ofcourse).
+Removing a mongo-document in neo4j is executed as you would normally. Post hooks of `Document.remove()` will cause the removed document(s) to be removed in neo4j as well (including subdocuments & relationships; not the related docs, of course).
 
 ```javascript
 // Remove 'neil' from neo4j as well as mongo
@@ -338,7 +338,7 @@ These methods can be called without an instance of an object. In other words, st
   - `sub`: Return a subscription. Can be used as explained [here](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-streaming-api). Defaults to `false`
   - `parse`: Parse result with [parse-neo4j](https://www.npmjs.com/package/parse-neo4j). This is only available in the case of a Promise. If both options are `true` the query will throw an error. Defaults to `false`
 
-**Returns:** a `Promise` with the result of the [cypher query](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-promise-api). _or a subscription in case of sub options set to `true`._
+**Returns:** a `Promise` with the result of the [cypher query](https://github.com/neo4j/neo4j-javascript-driver#consuming-records-with-promise-api). _or a subscription in case of sub-options set to `true`._
 
 **Note**: The session is automatically closed after the query, _**only in the case of a promise!**_
 
@@ -394,7 +394,7 @@ For examples, refer to the [test cases](test/functions/) for now.
 ### Why is there a deletion query in the update function?
 After trying a couple of times, I couldn't find a consistent way of determining what nodes or relationships have changed and to what.
 At the time (may still be) the data also couldn't fit into a single query.
-In order to maintain flexibility and speed a delete query has been added before refilling the neo4j database with the new relationships, nodes & data.
+In order to maintain flexibility and speed, a delete query has been added before refilling the neo4j database with the new relationships, nodes & data.
 
 ## Upcoming features & to-do-list
 Unfortunately, I don't have much time for keeping this repo up-to-date. However, from time to time I will try to have a look and see where I can fix or expand features. Right now all of the functionality described should work correctly and should cover the basic needs for scenarios where this package would be used.
