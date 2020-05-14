@@ -1,3 +1,11 @@
+## [2.1.3](https://github.com/SvenWesterlaken/mongo4j/compare/v2.1.2...v2.1.3) (2020-05-14)
+
+
+### Bug Fixes
+
+* upgrade mongoose from 5.9.12 to 5.9.13 ([a9337c4](https://github.com/SvenWesterlaken/mongo4j/commit/a9337c4984ec650e696d0b9426c8017cc114eab0))
+* upgrade mongoose from 5.9.12 to 5.9.13 ([870f6d7](https://github.com/SvenWesterlaken/mongo4j/commit/870f6d784119abd360fcc2541d06fa66169f395c))
+
 ## [2.1.2](https://github.com/SvenWesterlaken/mongo4j/compare/v2.1.1...v2.1.2) (2020-05-07)
 
 

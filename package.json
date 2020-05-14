@@ -1,6 +1,6 @@
 {
   "name": "mongo4j",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
   "main": "index.js",
   "scripts": {
