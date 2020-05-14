@@ -1,6 +1,6 @@
 {
   "name": "mongo4j",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Mongoose plugin to maintain Neo4J in combination with MongoDB",
   "main": "index.js",
   "scripts": {
@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "mongoose": "^5.9.10",
+    "mongoose": "^5.9.13",
     "neo4j-driver": "^4.0.2",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^8.0.0"
