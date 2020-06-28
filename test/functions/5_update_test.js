@@ -47,7 +47,7 @@ describe('Mongo4J Updating', () => {
       expect(results[0].ok).to.equal(1);
 
       return session.run('MATCH ' +
-                         '(n:Person {m_id : {id} }) ' +
+                         '(n:Person {m_id : $id }) ' +
                          'RETURN n;', {id: neil._id.toString()})
     }).then((result) => {
       const properties = result.records[0]._fields[0].properties;
@@ -91,7 +91,7 @@ describe('Mongo4J Updating', () => {
       expect(neo_stats.propertiesSet).to.be.at.least(1);
       expect(results[0].ok).to.equal(1);
 
-      return session.run('MATCH (n:Person {m_id : {id}})-[p]-(a:Address) RETURN a;', {id: neil._id.toString()});
+      return session.run('MATCH (n:Person {m_id : $id})-[p]-(a:Address) RETURN a;', {id: neil._id.toString()});
 
     }).then((result) => {
       const properties = result.records[0]._fields[0].properties;
@@ -147,7 +147,7 @@ describe('Mongo4J Updating', () => {
       expect(neo_stats.propertiesSet).to.be.at.least(1);
       expect(results[0].ok).to.equal(1);
 
-      return session.run('MATCH (d:Book {m_id: {book_id}})-[pa]-(a:Class {m_id: {id}})-[pb]-(n:Book) RETURN d,n,a;', {id: chemistry._id.toString(), book_id: chemistry.books[0]._id.toString()});
+      return session.run('MATCH (d:Book {m_id: $book_id})-[pa]-(a:Class {m_id: $id})-[pb]-(n:Book) RETURN d,n,a;', {id: chemistry._id.toString(), book_id: chemistry.books[0]._id.toString()});
 
     }).then((result) => {
       const properties = result.records[0]._fields[0].properties;
@@ -463,7 +463,7 @@ describe('Mongo4J Updating', () => {
       expect(neo_stats.propertiesSet).to.be.at.least(1);
       expect(results[0].ok).to.equal(1);
 
-      return session.run('MATCH (n:Person {m_id : {id}})-[p]-(a:Address) RETURN a;', {id: neil._id.toString()});
+      return session.run('MATCH (n:Person {m_id : $id})-[p]-(a:Address) RETURN a;', {id: neil._id.toString()});
 
     }).then((result) => {
       const properties = result.records[0]._fields[0].properties;
