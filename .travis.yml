@@ -17,10 +17,7 @@ node_js:
   - '12'
   - '14'
 
-jdk:
-  - oraclejdk11
-  - openjdk11
-
+jdk: openjdk11
 
 services:
   - mongodb
@@ -34,6 +31,7 @@ cache:
 
 before_install:
   - if [[ `npm -v` != 6* ]]; then npm install -g npm@6; fi
+  - jdk_switcher use openjdk11
 
 install:
   - case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
