@@ -40,7 +40,7 @@ notifications:
   email: false
 
 before_script:
-  - sleep 60
+  - sleep 15
 
 script:
   - npm run test-travis
