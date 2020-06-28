@@ -1,13 +1,13 @@
 const { Person, neo4j, chai, expect } = require('../helper');
-const neo4jUri = process.env.NEO_URI || "bolt://127.0.0.1";
+const neo4jUri = process.env.NEO_URI || "neo4j://127.0.0.1";
 
 describe('Simple Cypher queries', () => {
 
     beforeEach('Add 2 nodes to neo4j', (done) => {
       const session = neo4j.getDriver().session();
         session.run('CREATE ' +
-                    '(j:Person {name : {james} }), ' +
-                    '(n:Person {name : {neil} }) ' +
+                    '(j:Person {name : $james }), ' +
+                    '(n:Person {name : $neil }) ' +
                     'RETURN j,n;', {james: 'James', neil: 'Neil'})
         .then(() => {
             session.close().then(done);
@@ -26,7 +26,7 @@ describe('Simple Cypher queries', () => {
     });
 
     it('Should return a single parced neo4j document', (done) => {
-        const query = 'MATCH (n:Person {name: {nameParam} }) RETURN n;';
+        const query = 'MATCH (n:Person {name: $nameParam }) RETURN n;';
         const result = Person.cypherQuery(query, {nameParam: 'James'}, { parse: true });
 
         expect(result).to.be.a('promise');

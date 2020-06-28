@@ -35,7 +35,7 @@ describe('Mongo4J Saving', () => {
       expect(result).to.have.a.property('isNew', false);
 
       return session.run('MATCH ' +
-                         '(n:Person {m_id : {id} }) ' +
+                         '(n:Person {m_id : $id }) ' +
                          'RETURN n;', {id: neil._id.toString()});
 
     }).then((result) => {

@@ -61,7 +61,7 @@ Same options can be used as the official driver and there is the possibility of 
 ### Single driver
 
 #### mongo4j.init(host, auth, options)
-- `host` - Url to neo4j database. Defaults to `bolt://127.0.0.1`
+- `host` - Url to neo4j database. Defaults to `neo4j://127.0.0.1`
 - `auth` - Authentication parameters:
   - `user` - User for neo4j authentication. Defaults to `neo4j`
   - `pass` - Password for neo4j authentication. Defaults to `neo4j`
@@ -70,7 +70,7 @@ Same options can be used as the official driver and there is the possibility of 
 ```javascript
 const mongo4j = require('mongo4j');
 
-mongo4j.init('bolt://localhost', {user: 'neo4j', pass: 'neo4j'});
+mongo4j.init('neo4j://localhost', {user: 'neo4j', pass: 'neo4j'});
 ```
 
 ### Multiple drivers
@@ -79,7 +79,7 @@ mongo4j.init('bolt://localhost', {user: 'neo4j', pass: 'neo4j'});
 
 - `hosts` - Array of hosts. A host in this case consists of:
   - `name` - Identifier to reference this specific driver. _(Must be a string)_ **Required**
-  - `url` - Url to neo4j database. Defaults to `bolt://127.0.0.1`
+  - `url` - Url to neo4j database. Defaults to `neo4j://127.0.0.1`
   - `auth` - Authentication parameters:
     - `user` - User for neo4j authentication. Defaults to `neo4j`
     - `pass` - Password for neo4j authentication. Defaults to `neo4j`
@@ -97,14 +97,14 @@ const mongo4j = require('mongo4j');
 mongo4j.init(
   [{
     name: 'testconnection1',
-    url: 'bolt://127.0.0.1',
+    url: 'neo4j://127.0.0.1',
     auth: {
       user: 'neo4j',
       pass: 'neo4j'
     }
   }, {
     name: 'testconnection2',
-    url: 'bolt://127.0.0.1'
+    url: 'neo4j://127.0.0.1'
   }]
 );
 ```
@@ -358,7 +358,7 @@ Person.cypherQuery('MATCH (n:Person)-[r:Takes_Class]-(c:Class) return n;')
 ```
 ```javascript
 // Run query with parse on for the result & using parameters for the query
-Person.cypherQuery('MATCH (n:Person {name: {nameParam} }) RETURN n;', {nameParam: 'James'}, { parse: true });
+Person.cypherQuery('MATCH (n:Person {name: $nameParam }) RETURN n;', {nameParam: 'James'}, { parse: true });
   .then(result => {
     result.records.forEach(record => {
       console.log(record.get('name'))

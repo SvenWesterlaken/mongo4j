@@ -8,17 +8,20 @@ branches:
     - /^v\d+\.\d+\.\d+$/
 
 sudo: required
-dist: trusty
-group: deprecated-2017Q4
 
 language: node_js
 node_js:
   - '10'
   - '12'
+  - '14'
+
+jdk: openjdk11
 
 services:
   - mongodb
-  - neo4j
+
+env:
+  - NEO4J_VERSION="4.1.0"
 
 cache:
   directories:
@@ -27,7 +30,15 @@ cache:
 before_install:
   - if [[ `npm -v` != 6* ]]; then npm install -g npm@6; fi
 
-install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
+install:
+  - case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
+  - mkdir -p /tmp/neo4j
+  - cd /tmp/neo4j
+  - wget dist.neo4j.org/neo4j-community-$NEO4J_VERSION-unix.tar.gz
+  - tar -xzf neo4j-community-$NEO4J_VERSION-unix.tar.gz
+  - /tmp/neo4j/neo4j-community-$NEO4J_VERSION/bin/neo4j-admin set-initial-password $NEO_PASS
+  - /tmp/neo4j/neo4j-community-$NEO4J_VERSION/bin/neo4j start
+  - cd $TRAVIS_BUILD_DIR
 
 notifications:
   email: false
