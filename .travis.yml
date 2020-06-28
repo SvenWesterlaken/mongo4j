@@ -43,6 +43,8 @@ notifications:
 
 before_script:
   - sleep 15
+  - curl -v POST http://neo4j:neo4j@localhost:7474/user/neo4j/password -d"password=neo4j2"
+  - curl -v POST http://neo4j:neo4j2@localhost:7474/user/neo4j/password -d"password=neo4j"
 
 script:
   - npm run test-travis
