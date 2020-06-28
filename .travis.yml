@@ -17,9 +17,15 @@ node_js:
   - '12'
   - '14'
 
+jdk:
+  - oraclejdk8
+
 services:
   - mongodb
   - neo4j
+
+env:
+  - NEO4J_VERSION="4.1.0"
 
 cache:
   directories:
@@ -30,9 +36,9 @@ before_install:
 
 install:
   - case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
-  - curl --fail --silent --show-error --location --remote-name https://dist.neo4j.org/neo4j-community-4.1.0-unix.tar.gz
-  - tar -xzf neo4j-community-4.1.0-unix.tar.gz
-  - neo4j-community-4.1.0/bin/neo4j start
+  - wget dist.neo4j.org/neo4j-community-$NEO4J_VERSION-unix.tar.gz
+  - tar -xzf neo4j-community-$NEO4J_VERSION-unix.tar.gz
+  - neo4j-community-$NEO4J_VERSION/bin/neo4j start
 
 notifications:
   email: false
