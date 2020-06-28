@@ -3,7 +3,7 @@ const mongo4j = require('../../lib/core');
 const chai = require('chai');
 const expect = chai.expect;
 
-const neo4jUri = process.env.NEO_URI || "bolt://127.0.0.1";
+const neo4jUri = process.env.NEO_URI || "neo4j://127.0.0.1";
 
 describe("Neo4J driver management", () => {
 
