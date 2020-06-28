@@ -34,6 +34,7 @@ install:
   - case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
   - wget dist.neo4j.org/neo4j-community-$NEO4J_VERSION-unix.tar.gz
   - tar -xzf neo4j-community-$NEO4J_VERSION-unix.tar.gz
+  - neo4j-community-$NEO4J_VERSION/bin/neo4j-admin set-initial-password $NEO_PASS
   - neo4j-community-$NEO4J_VERSION/bin/neo4j start
 
 notifications:
