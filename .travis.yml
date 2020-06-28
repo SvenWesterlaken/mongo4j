@@ -15,10 +15,11 @@ language: node_js
 node_js:
   - '10'
   - '12'
+  - '14'
 
 services:
   - mongodb
-  - neo4j
+  neo4j: 4.0.0
 
 cache:
   directories:
