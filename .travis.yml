@@ -19,6 +19,8 @@ node_js:
 
 jdk:
   - oraclejdk11
+  - openjdk11
+
 
 services:
   - mongodb
