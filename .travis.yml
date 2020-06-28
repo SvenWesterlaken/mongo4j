@@ -22,7 +22,6 @@ jdk:
 
 services:
   - mongodb
-  - neo4j
 
 env:
   - NEO4J_VERSION="4.1.0"
