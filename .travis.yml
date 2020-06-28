@@ -24,8 +24,6 @@ services:
 
 env:
   - NEO4J_VERSION="4.1.0"
-  - NEO4J_AUTH="neo4j/neo4j"
-
 
 cache:
   directories:
