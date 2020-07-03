@@ -1,3 +1,40 @@
+# [3.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v2.1.5...v3.0.0) (2020-06-28)
+
+
+### Bug Fixes
+
+* **neo4j:** replace bolt with neo4j protocol ([84ca79a](https://github.com/SvenWesterlaken/mongo4j/commit/84ca79a301e3cf0cadb3333289a1f8643edff771))
+* **test:** add longer timeout for hook ([4447ed6](https://github.com/SvenWesterlaken/mongo4j/commit/4447ed62b849853dd76a321fbee3340b29aadb62))
+* **travis:** add initial password set ([30b7a78](https://github.com/SvenWesterlaken/mongo4j/commit/30b7a78994d8eae4f9c8325b82ebb67f5e6955c7))
+* **travis:** add longer sleeping ([ac85c8c](https://github.com/SvenWesterlaken/mongo4j/commit/ac85c8ca8a1a3d7fa37994d64fed7aba00c63d69))
+* **travis:** add openjdk11 ([3a87444](https://github.com/SvenWesterlaken/mongo4j/commit/3a8744488a394351dc5c5abf70fd400c4ed79298))
+* **travis:** add oracle jdk for neo4j ([b30761e](https://github.com/SvenWesterlaken/mongo4j/commit/b30761ec3ee7b2a652292a097abce2250ff37262))
+* **travis:** add post request to fix password bug ([15f383f](https://github.com/SvenWesterlaken/mongo4j/commit/15f383f8061fd708db3086f0b2354281dee212c2))
+* **travis:** apply curl and remove sed cmd ([f587596](https://github.com/SvenWesterlaken/mongo4j/commit/f587596baf63d4d39ac6012bb02f279d4a59c24b))
+* **travis:** apply jdk switcher ([48f3039](https://github.com/SvenWesterlaken/mongo4j/commit/48f3039a5da266d7ee3ba747b6a42831f017dc89))
+* **travis:** comment out trusty ([ea690a8](https://github.com/SvenWesterlaken/mongo4j/commit/ea690a849b2d6030c268c8eedef7848cb72a096a))
+* **travis:** create tmp folder for neo4j installation ([eee9586](https://github.com/SvenWesterlaken/mongo4j/commit/eee9586f56a23111b15ab41430394e8c54b485da))
+* **travis:** move env to travis web instead of config file ([69d3e64](https://github.com/SvenWesterlaken/mongo4j/commit/69d3e6481eab27ceccb2747111108e819fccd00f))
+* **travis:** remove jdk_switcher ([91ce10a](https://github.com/SvenWesterlaken/mongo4j/commit/91ce10a6f56bf73ef62431cde92994cd94be509b))
+* **travis:** set jdk version to 11 ([a410874](https://github.com/SvenWesterlaken/mongo4j/commit/a410874043c3bbeea639898b1b4ec44bb75ae5e6))
+* **travis:** try installing neo4j version 4.1.0 ([5afa876](https://github.com/SvenWesterlaken/mongo4j/commit/5afa8765ac6c83c2cf9e704bb36238fd5777edf1))
+* **travis:** try to set neo4j version ([c356352](https://github.com/SvenWesterlaken/mongo4j/commit/c356352b38eef3d47b6622643693c62d5f6ab466))
+* **travis:** use AUTH env variable ([a7808df](https://github.com/SvenWesterlaken/mongo4j/commit/a7808df52f16d78b1af0dc72fcaa0c3411e68830))
+* upgrade mongoose from 5.9.18 to 5.9.20 ([641a049](https://github.com/SvenWesterlaken/mongo4j/commit/641a0494e8045e4126fda5025fdc484886b40f80))
+* upgrade neo4j-driver from 4.0.2 to 4.1.0 ([85a14c7](https://github.com/SvenWesterlaken/mongo4j/commit/85a14c791493c630980fbe12bd9b64318b7612aa))
+
+
+### doc
+
+* **README:** update documentation to changes ([9edf356](https://github.com/SvenWesterlaken/mongo4j/commit/9edf356f8375bf5450a3fa4635556020a524d408))
+
+
+### BREAKING CHANGES
+
+* **README:** use neo4j as a standard protocol instead of bolt
+* **README:** now tested with neo4j database version >= 4
+* **README:** old parameter syntax is deprecated, new usage in documentation
+
 ## [2.1.5](https://github.com/SvenWesterlaken/mongo4j/compare/v2.1.4...v2.1.5) (2020-06-24)
 
 
