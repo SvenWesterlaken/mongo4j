@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/SvenWesterlaken/mongo4j/compare/v3.0.0...v3.0.1) (2020-07-03)
+
+
+### Bug Fixes
+
+* upgrade mongoose from 5.9.20 to 5.9.21 ([64fed8d](https://github.com/SvenWesterlaken/mongo4j/commit/64fed8d0651ec6c3215e4337f36844435e1ced83))
+
 # [3.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v2.1.5...v3.0.0) (2020-06-28)
 
 
