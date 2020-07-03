@@ -9,10 +9,6 @@
 
 > A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
 
-> Although this package will not be _actively_ maintained, I try to keep it functional and up-to-date with the dependencies. Therefore, I want to note that **the basic functionalities, described in this documentation, should work and behave correctly**. If not, feel free to make an issue or contribute yourself by having a look at the pull-requests.
->
-> For a list of ideas for features to contribute to, visit the [to-do-list](#upcoming-features--to-do-list).
-
 ## Table of contents
 - [Motivation](#motivation---why-mongo4j-another-library)
 - [Installation](#installation)
@@ -299,7 +295,7 @@ Unfortunately, mongoose doesn't supply a direct way of accessing data in update 
 **Returns:** a promise with a result of an array containing (in order):
 - Result of the updateOne method. See [documentation](https://mongoosejs.com/docs/api.html#document_Document-updateOne)
 - Result of the cypher update query
-- Result of the cypher query that deleted all the previous relationships. **(If not executed this will be null)**. Why this query is executed is explained [here (not written yet)](#upcoming-features--to-do-list).
+- Result of the cypher query that deleted all the previous relationships. **(If not executed this will be null)**. Why this query is executed is explained [here](#upcoming-features--to-do-list).
 
 ```javascript
 // variable `person` refers to a document fetched from the database or returned as a result after saving
