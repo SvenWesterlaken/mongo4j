@@ -49,8 +49,8 @@
     "node": ">=10"
   },
   "dependencies": {
-    "lodash": "^4.17.15",
-    "mongoose": "^5.9.21",
+    "lodash": "^4.17.19",
+    "mongoose": "^5.9.22",
     "neo4j-driver": "^4.1.0",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^8.0.0"

@@ -295,7 +295,7 @@ Unfortunately, mongoose doesn't supply a direct way of accessing data in update 
 **Returns:** a promise with a result of an array containing (in order):
 - Result of the updateOne method. See [documentation](https://mongoosejs.com/docs/api.html#document_Document-updateOne)
 - Result of the cypher update query
-- Result of the cypher query that deleted all the previous relationships. **(If not executed this will be null)**. Why this query is executed is explained [here](#upcoming-features--to-do-list).
+- Result of the cypher query that deleted all the previous relationships. **(If not executed this will be null)**. Why this query is executed is explained [here](#why-is-there-a-deletion-query-in-the-update-function).
 
 ```javascript
 // variable `person` refers to a document fetched from the database or returned as a result after saving
