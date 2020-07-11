@@ -1,3 +1,13 @@
+## [3.0.2](https://github.com/SvenWesterlaken/mongo4j/compare/v3.0.1...v3.0.2) (2020-07-11)
+
+
+### Bug Fixes
+
+* **package:** rebuild package.json lockfile ([1bccb0a](https://github.com/SvenWesterlaken/mongo4j/commit/1bccb0a06a3414ac5d7b703c809fe0f17ebe067f))
+* package.json & package-lock.json to reduce vulnerabilities ([9c380ed](https://github.com/SvenWesterlaken/mongo4j/commit/9c380ed462dfced1fc7bd1b601bc5fea2a41d023))
+* upgrade lodash from 4.17.15 to 4.17.19 ([543a580](https://github.com/SvenWesterlaken/mongo4j/commit/543a5802f0de453cdd5e2af2bfd98ced502459eb))
+* upgrade mongoose from 5.9.21 to 5.9.22 ([9deee9d](https://github.com/SvenWesterlaken/mongo4j/commit/9deee9d26e93dc2c57765e368332f65e469ffcd4))
+
 ## [3.0.1](https://github.com/SvenWesterlaken/mongo4j/compare/v3.0.0...v3.0.1) (2020-07-03)
 
 
