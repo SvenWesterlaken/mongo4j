@@ -5,3 +5,4 @@ Dockerfile
 .dockerignore
 .nyc_output
 .travis.yml
+.github/
