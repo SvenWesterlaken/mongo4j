@@ -22,7 +22,7 @@ jobs:
         - 7474:7474
         - 7687:7687
         env:
-          NEO4J_AUTH: neo4j/ci
+          NEO4J_AUTH: neo4j/new
     steps:
     # Fetch the latest commit
     - name: Checkout
@@ -33,7 +33,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        
+
     - name: Start MongoDB
       uses: supercharge/mongodb-github-action@1.3.0
       with:
@@ -47,9 +47,9 @@ jobs:
     - name: Test
       run: npm run test-ci
       env:
-        NEO_PASS: ci
+        NEO_URI: neo4j://neo4j
         NEO_USER: neo4j
-        NEO_URI: neo4j://localhost:7687
+        NEO_PASS: new
 
 # -------------------------------------------------------------
 # Release
@@ -67,7 +67,7 @@ jobs:
         - 7474:7474
         - 7687:7687
         env:
-          NEO4J_AUTH: neo4j/ci
+          NEO4J_AUTH: neo4j/new
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -91,6 +91,6 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        NEO_PASS: ci
+        NEO_URI: neo4j://neo4j
         NEO_USER: neo4j
-        NEO_URI: neo4j://localhost:7687
+        NEO_PASS: new
