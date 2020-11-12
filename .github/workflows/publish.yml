@@ -47,7 +47,7 @@ jobs:
     - name: Test
       run: npm run test-ci
       env:
-        NEO_URI: bolt://neo4j
+        NEO_URI: neo4j://neo4j:7687
         NEO_USER: neo4j
         NEO_PASS: new
 
@@ -91,6 +91,6 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        NEO_URI: bolt://neo4j
+        NEO_URI: neo4j://neo4j:7687
         NEO_USER: neo4j
         NEO_PASS: new
