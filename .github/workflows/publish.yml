@@ -6,7 +6,7 @@ on:
  push:
   branches:
     - master
-    - /^.*githubaction.*$/
+    - feature/githubaction
 
 jobs:
  test:
