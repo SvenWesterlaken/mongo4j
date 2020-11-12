@@ -12,9 +12,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-    matrix:
-      # Run the steps below with the following versions of Node.js
-      node-version: [10.x, 12.x, 14.x]
+      matrix:
+        # Run the steps below with the following versions of Node.js
+        node-version: [10.x, 12.x, 14.x]
     steps:
     # Fetch the latest commit
     - name: Checkout
