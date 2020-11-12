@@ -1,3 +1,23 @@
+# [3.1.0](https://github.com/SvenWesterlaken/mongo4j/compare/v3.0.3...v3.1.0) (2020-11-12)
+
+
+### Bug Fixes
+
+* **ci:** add run for test-ci npm action ([4df37a1](https://github.com/SvenWesterlaken/mongo4j/commit/4df37a10f004df57a66d877c2204c9a7d180dc4a))
+* **ci:** fix indentation ([b4a4b5f](https://github.com/SvenWesterlaken/mongo4j/commit/b4a4b5f069a2b823c085c3ebaeb0f6db23e7cb2a))
+* **ci:** fix indentation for matrix ([535f316](https://github.com/SvenWesterlaken/mongo4j/commit/535f316f0887e365b8cfdd35a9f6d9bd43b12d92))
+* **ci:** switch from travis to github action ([28ac338](https://github.com/SvenWesterlaken/mongo4j/commit/28ac33813ffdbe2e8dce88598bf1ec3077aa9d38))
+* **ci:** switch to bolt ([85fc05c](https://github.com/SvenWesterlaken/mongo4j/commit/85fc05cba39812a55b16c8c080a4c224c57519d8))
+* **ci:** use service container instead of github action ([da48179](https://github.com/SvenWesterlaken/mongo4j/commit/da4817942bb4955aca0ca149e6048f3bb0831f37))
+* upgrade mongoose from 5.9.24 to 5.10.9 ([c610270](https://github.com/SvenWesterlaken/mongo4j/commit/c6102706c15aa0be049978ac8c3406b5015f0e2b))
+* upgrade neo4j-driver from 4.1.1 to 4.1.2 ([cc3000b](https://github.com/SvenWesterlaken/mongo4j/commit/cc3000b57715dd0fbd0a8cda0715085a2684ca05))
+
+
+### Features
+
+* **save:** merge instead of create in order to create only unique nodes ([127caed](https://github.com/SvenWesterlaken/mongo4j/commit/127caed31dac5a7331fa02abbe8197eed8f7a761))
+* **save:** merge instead of create ito create only unique relationships ([2b13879](https://github.com/SvenWesterlaken/mongo4j/commit/2b1387966ddef2b8343d3f9385e677a368e44514))
+
 ## [3.0.3](https://github.com/SvenWesterlaken/mongo4j/compare/v3.0.2...v3.0.3) (2020-10-10)
 
 
