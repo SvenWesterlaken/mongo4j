@@ -1,3 +1,5 @@
+## [3.1.1](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.0...v3.1.1) (2020-11-12)
+
 # [3.1.0](https://github.com/SvenWesterlaken/mongo4j/compare/v3.0.3...v3.1.0) (2020-11-12)
 
 
