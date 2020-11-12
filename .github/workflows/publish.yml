@@ -42,7 +42,7 @@ jobs:
 
     # Run tests
     - name: Test
-      run: npm test-ci
+      run: npm run test-ci
       env:
         NEO_PASS: ci
         NEO_USER: neo4j
