@@ -9,45 +9,44 @@ on:
     - feature/githubaction
 
 jobs:
- test:
-  runs-on: ubuntu-latest
-  strategy:
-   matrix:
-    # Run the steps below with the following versions of Node.js
-    node-version: [10.x, 12.x, 14.x]
-  steps:
-  # Fetch the latest commit
-  - name: Checkout
-    uses: actions/checkout@v2
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+    matrix:
+      # Run the steps below with the following versions of Node.js
+      node-version: [10.x, 12.x, 14.x]
+    steps:
+    # Fetch the latest commit
+    - name: Checkout
+      uses: actions/checkout@v2
 
-  # Setup Node.js using the appropriate version
-  - name: Use Node.js ${{ matrix.node-version }}
-    uses: actions/setup-node@v1
-    with:
-      node-version: ${{ matrix.node-version }}
+    # Setup Node.js using the appropriate version
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
-  - name: Start Neo4j
-    uses: baptouuuu/setup-neo4j@v1.0.0
-    with:
-      tag: '4.1.0'
+    - name: Start Neo4j
+      uses: baptouuuu/setup-neo4j@v1.0.0
+      with:
+        tag: '4.1.0'
 
-  - name: Start MongoDB
-    uses: supercharge/mongodb-github-action@1.3.0
-    with:
-      mongodb-version: 4.2
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.3.0
+      with:
+        mongodb-version: 4.2
 
-  # Install package dependencies
-  - name: Install
-    run: npm install
+    # Install package dependencies
+    - name: Install
+      run: npm install
 
-  # Run tests
-  - name: Test
-    run: npm test-ci
-    env:
-      NEO_PASS: ci
-      NEO_USER: neo4j
-      NEO_URI: neo4j://localhost:7687
-
+    # Run tests
+    - name: Test
+      run: npm test-ci
+      env:
+        NEO_PASS: ci
+        NEO_USER: neo4j
+        NEO_URI: neo4j://localhost:7687
 
 # -------------------------------------------------------------
 # Release
