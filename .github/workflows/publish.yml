@@ -23,6 +23,8 @@ jobs:
         - 7687:7687
         env:
           NEO4J_AUTH: neo4j/new
+          NEO4J_dbms_connector_http_advertised__address: "neo4j:7474"
+          NEO4J_dbms_connector_bolt_advertised__address: "neo4j:7687"
     steps:
     # Fetch the latest commit
     - name: Checkout
@@ -68,6 +70,8 @@ jobs:
         - 7687:7687
         env:
           NEO4J_AUTH: neo4j/new
+          NEO4J_dbms_connector_http_advertised__address: "neo4j:7474"
+          NEO4J_dbms_connector_bolt_advertised__address: "neo4j:7687"
     steps:
     - name: Checkout
       uses: actions/checkout@v2
