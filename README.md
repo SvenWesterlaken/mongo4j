@@ -111,7 +111,7 @@ The same goes for options. If you only want to use shared options, make sure you
 ```javascript
 const mongo4j = require('mongo4j');
 
-// connectionPoolSize is set for both driver
+// connectionPoolSize is set for both drivers
 mongo4j.init([host1, host2], null, {connectionPoolSize: 100});
 ```
 
