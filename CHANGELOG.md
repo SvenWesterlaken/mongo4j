@@ -1,3 +1,11 @@
+## [3.1.2](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.1...v3.1.2) (2020-11-21)
+
+
+### Bug Fixes
+
+* upgrade mongoose from 5.10.13 to 5.10.14 ([9f23919](https://github.com/SvenWesterlaken/mongo4j/commit/9f239197787f274cad639dbb45b18dbc37fce2a6))
+* upgrade neo4j-driver from 4.1.2 to 4.2.1 ([e3877ab](https://github.com/SvenWesterlaken/mongo4j/commit/e3877abfb8305e8e9c4e9925101616913d839bef))
+
 ## [3.1.1](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.0...v3.1.1) (2020-11-12)
 
 # [3.1.0](https://github.com/SvenWesterlaken/mongo4j/compare/v3.0.3...v3.1.0) (2020-11-12)
