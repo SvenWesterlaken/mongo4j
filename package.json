@@ -95,6 +95,10 @@
         {
           "type": "major",
           "release": "major"
+        },
+        {
+          "type": "build",
+          "release": "patch"
         }
       ]
     },
