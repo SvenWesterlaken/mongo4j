@@ -6,3 +6,6 @@ Dockerfile
 .nyc_output
 .travis.yml
 .github/
+CHANGELOG.md
+LICENSE.md
+README.md
