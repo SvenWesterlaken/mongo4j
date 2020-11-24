@@ -1,3 +1,11 @@
+## [3.1.3](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.2...v3.1.3) (2020-11-24)
+
+
+### Bug Fixes
+
+* **deps:** remove travis-deploy-once including vulnerability ([3167d6d](https://github.com/SvenWesterlaken/mongo4j/commit/3167d6d465772c7a362431252ef462261ca2a9a3))
+* upgrade mongoose from 5.10.14 to 5.10.15 ([727e553](https://github.com/SvenWesterlaken/mongo4j/commit/727e5533a22c071fd995eae79e62db6aca8f61c0))
+
 ## [3.1.2](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.1...v3.1.2) (2020-11-21)
 
 
