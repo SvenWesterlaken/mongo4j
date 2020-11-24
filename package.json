@@ -10,6 +10,7 @@
     "cover": "set NODE_ENV=test && nyc mocha",
     "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls",
     "semantic-release": "semantic-release",
+    "semantic-release-dry": "semantic-release -d",
     "travis-deploy-once": "travis-deploy-once"
   },
   "keywords": [
