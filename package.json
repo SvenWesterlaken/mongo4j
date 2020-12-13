@@ -10,6 +10,7 @@
     "cover": "set NODE_ENV=test && nyc mocha",
     "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls",
     "semantic-release": "semantic-release",
+    "semantic-release-dry": "semantic-release -d",
     "travis-deploy-once": "travis-deploy-once"
   },
   "keywords": [
@@ -50,7 +51,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "mongoose": "^5.10.15",
+    "mongoose": "^5.10.16",
     "neo4j-driver": "^4.2.1",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^8.0.0"
@@ -58,7 +59,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
-    "@semantic-release/npm": "^7.0.8",
+    "@semantic-release/npm": "^7.0.9",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-like": "^1.1.1",
