@@ -1,3 +1,11 @@
+## [3.1.4](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.3...v3.1.4) (2020-12-13)
+
+
+### Bug Fixes
+
+* **init:** fix vulnerability version init package ([6e708c6](https://github.com/SvenWesterlaken/mongo4j/commit/6e708c6c48a59345f7e8fa6e59fae9d0222ba2c4))
+* upgrade mongoose from 5.10.15 to 5.10.16 ([c08087d](https://github.com/SvenWesterlaken/mongo4j/commit/c08087d0ecb01367992c9949e1321776208e4f09))
+
 ## [3.1.3](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.2...v3.1.3) (2020-11-24)
 
 
