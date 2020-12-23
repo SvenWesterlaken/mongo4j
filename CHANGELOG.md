@@ -1,3 +1,11 @@
+## [3.1.5](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.4...v3.1.5) (2020-12-23)
+
+
+### Bug Fixes
+
+* **ci:** allow pull requests to dry run release ([5c37fbd](https://github.com/SvenWesterlaken/mongo4j/commit/5c37fbd75b653e065f5ec917e13e8b906eb67612))
+* upgrade mongoose from 5.11.7 to 5.11.8 ([25bac72](https://github.com/SvenWesterlaken/mongo4j/commit/25bac72bbe4cb13ca7dcd9e45df25187f8a27c52))
+
 ## [3.1.4](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.3...v3.1.4) (2020-12-13)
 
 
