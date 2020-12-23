@@ -84,7 +84,7 @@ jobs:
     - name: Install
       run: npm i
 
-    - name: Release
+    - name: Release (dry)
       run: npm run semantic-release-dry
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
