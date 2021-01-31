@@ -10,9 +10,9 @@
   <a href="https://www.npmjs.com/package/mongo4j" rel="nofollow"><img src="https://camo.githubusercontent.com/8a9d847c262af99c0234a34a4468ba26c8e5757c4eb740850dc4cbe4647b7f21/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f64742f6d6f6e676f346a2e737667" alt="npm" data-canonical-src="https://img.shields.io/npm/dt/mongo4j.svg" style="max-width:100%;"></a>
 </p>
 
----
-
-> A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
+<blockquote align="center">
+  <p>A <a href="http://mongoosejs.com/" rel="nofollow">mongoose</a> plugin to automatically maintain nodes in <a href="https://neo4j.com/" rel="nofollow">neo4j</a></p>
+</blockquote>
 
 ## Table of contents
 - [Motivation](#motivation---why-mongo4j-another-library)
@@ -406,10 +406,7 @@ _I will check these every now and then_
 #### To-do-list:
 
 - Wrappers around static functions of a model (adding, updating & deleting)
-- Documentation
 - Code documentation
-- Creating a wiki or documentation website
-- Tests
 - Debug Mode (ie. show neo4j query's)
 - Helper functions for neo4j access
 - State hooks
