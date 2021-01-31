@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://info.mollie.com/hubfs/github/nodejs/logo-1.png" width="520" height="210"/>
+  <img src="./.github/images/mongo4j.png" width="520" height="210"/>
 </p>
 <h1 align="center">Mongo4J</h1>
 
