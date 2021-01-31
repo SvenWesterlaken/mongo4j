@@ -1,3 +1,13 @@
+## [3.1.6](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.5...v3.1.6) (2021-01-31)
+
+
+### Bug Fixes
+
+* **readme:** adjust spacing ([800f06d](https://github.com/SvenWesterlaken/mongo4j/commit/800f06d3d0c8ca6d878be4ec7a67d25dc548763d))
+* **readme:** use html ([c63ad07](https://github.com/SvenWesterlaken/mongo4j/commit/c63ad0745e7b612acac9863297f80647a68bad1b))
+* upgrade mongoose from 5.11.8 to 5.11.9 ([c511f89](https://github.com/SvenWesterlaken/mongo4j/commit/c511f89cb5a83ce6c8d53dc9996bbe58b2f35cf4))
+* upgrade neo4j-driver from 4.2.1 to 4.2.2 ([d33c473](https://github.com/SvenWesterlaken/mongo4j/commit/d33c47344bf6e05d2a81594aff37e0e3e2f6fee8))
+
 ## [3.1.5](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.4...v3.1.5) (2020-12-23)
 
 
