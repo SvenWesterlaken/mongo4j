@@ -1,14 +1,16 @@
 <p align="center">
-  <img src="./.github/images/mongo4j.png" width="520" height="210"/>
+  <img src="./.github/images/mongo4j.png" width="310" height="125"/>
 </p>
 <h1 align="center">Mongo4J</h1>
 
 <p align="center" style="text-align: center;">
-  [![Build](https://github.com/SvenWesterlaken/mongo4j/workflows/test%20&%20release/badge.svg?branch=master)](https://github.com/SvenWesterlaken/mongo4j/actions)
-  [![Coverage Status](https://coveralls.io/repos/github/SvenWesterlaken/mongo4j/badge.svg?branch=master)](https://coveralls.io/github/SvenWesterlaken/mongo4j?branch=master)
-  [![npm](https://img.shields.io/npm/v/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
-  [![npm](https://img.shields.io/npm/dt/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
+  <a href="https://github.com/SvenWesterlaken/mongo4j/actions"><img src="https://github.com/SvenWesterlaken/mongo4j/workflows/test%20&amp;%20release/badge.svg?branch=master" alt="Build" style="max-width:100%;"></a>
+  <a href="https://coveralls.io/github/SvenWesterlaken/mongo4j?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/fa0cbb69b0e892fb58f9c7174cb07b5e5ce8a76acf9fd8a5ee6186af0c6b151b/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f5376656e5765737465726c616b656e2f6d6f6e676f346a2f62616467652e7376673f6272616e63683d6d6173746572" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/github/SvenWesterlaken/mongo4j/badge.svg?branch=master" style="max-width:100%;"></a>
+  <a href="https://www.npmjs.com/package/mongo4j" rel="nofollow"><img src="https://camo.githubusercontent.com/e629ecdc387bc40106bff31844373294ac28bfbc88855a873de59ec37382913c/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f6d6f6e676f346a2e737667" alt="npm" data-canonical-src="https://img.shields.io/npm/v/mongo4j.svg" style="max-width:100%;"></a>
+  <a href="https://www.npmjs.com/package/mongo4j" rel="nofollow"><img src="https://camo.githubusercontent.com/8a9d847c262af99c0234a34a4468ba26c8e5757c4eb740850dc4cbe4647b7f21/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f64742f6d6f6e676f346a2e737667" alt="npm" data-canonical-src="https://img.shields.io/npm/dt/mongo4j.svg" style="max-width:100%;"></a>
 </p>
+
+---
 
 > A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
 
