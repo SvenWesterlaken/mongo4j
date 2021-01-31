@@ -4,12 +4,10 @@
 <h1 align="center">Mongo4J</h1>
 
 <p align="center" style="text-align: center;">
-
-[![Build](https://github.com/SvenWesterlaken/mongo4j/workflows/test%20&%20release/badge.svg?branch=master)](https://github.com/SvenWesterlaken/mongo4j/actions)
-[![Coverage Status](https://coveralls.io/repos/github/SvenWesterlaken/mongo4j/badge.svg?branch=master)](https://coveralls.io/github/SvenWesterlaken/mongo4j?branch=master)
-[![npm](https://img.shields.io/npm/v/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
-[![npm](https://img.shields.io/npm/dt/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
-
+  [![Build](https://github.com/SvenWesterlaken/mongo4j/workflows/test%20&%20release/badge.svg?branch=master)](https://github.com/SvenWesterlaken/mongo4j/actions)
+  [![Coverage Status](https://coveralls.io/repos/github/SvenWesterlaken/mongo4j/badge.svg?branch=master)](https://coveralls.io/github/SvenWesterlaken/mongo4j?branch=master)
+  [![npm](https://img.shields.io/npm/v/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
+  [![npm](https://img.shields.io/npm/dt/mongo4j.svg)](https://www.npmjs.com/package/mongo4j)
 </p>
 
 > A [mongoose](http://mongoosejs.com/) plugin to automatically maintain nodes in [neo4j](https://neo4j.com/)
