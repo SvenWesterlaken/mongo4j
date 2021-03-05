@@ -1,3 +1,12 @@
+## [3.1.8](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.7...v3.1.8) (2021-03-05)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([09ae1f2](https://github.com/SvenWesterlaken/mongo4j/commit/09ae1f24b6bc0e5667f3abfe4a92619f92139377))
+* upgrade mongoose from 5.11.14 to 5.11.15 ([771212e](https://github.com/SvenWesterlaken/mongo4j/commit/771212ead02ffeb4e4646944be59da897072ff60))
+* upgrade neo4j-driver from 4.2.2 to 4.2.3 ([65dc379](https://github.com/SvenWesterlaken/mongo4j/commit/65dc379ee6b1a1aa6e4fb4fc0e723a2f3e7b6724))
+
 ## [3.1.7](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.6...v3.1.7) (2021-02-03)
 
 
