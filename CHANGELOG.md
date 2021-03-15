@@ -1,3 +1,10 @@
+## [3.1.9](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.8...v3.1.9) (2021-03-15)
+
+
+### Bug Fixes
+
+* upgrade mongoose from 5.11.19 to 5.12.0 ([2a0d66a](https://github.com/SvenWesterlaken/mongo4j/commit/2a0d66a812f928a8181dbd32456a14f077de36e6))
+
 ## [3.1.8](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.7...v3.1.8) (2021-03-05)
 
 
