@@ -1,3 +1,10 @@
+## [3.1.10](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.9...v3.1.10) (2021-03-26)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([ceccee1](https://github.com/SvenWesterlaken/mongo4j/commit/ceccee1c0661d839ab360e2e2fef51e308f99a99))
+
 ## [3.1.9](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.8...v3.1.9) (2021-03-15)
 
 
