@@ -44,7 +44,7 @@ describe('Mongo4J Updating', () => {
       const neo_stats = getStats(results);
 
       expect(neo_stats.propertiesSet).to.be.at.least(1);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       return session.run('MATCH ' +
                          '(n:Person {m_id : $id }) ' +
@@ -89,7 +89,7 @@ describe('Mongo4J Updating', () => {
       const neo_stats = getStats(results);
 
       expect(neo_stats.propertiesSet).to.be.at.least(1);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       return session.run('MATCH (n:Person {m_id : $id})-[p]-(a:Address) RETURN a;', {id: neil._id.toString()});
 
@@ -145,7 +145,7 @@ describe('Mongo4J Updating', () => {
       const neo_stats = getStats(results);
 
       expect(neo_stats.propertiesSet).to.be.at.least(1);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       return session.run('MATCH (d:Book {m_id: $book_id})-[pa]-(a:Class {m_id: $id})-[pb]-(n:Book) RETURN d,n,a;', {id: chemistry._id.toString(), book_id: chemistry.books[0]._id.toString()});
 
@@ -213,7 +213,7 @@ describe('Mongo4J Updating', () => {
 
       expect(neo_stats.relationshipsCreated).to.equal(1);
       expect(neo_del_stats.relationshipsDeleted).to.equal(1);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       return session.run('MATCH (n:Class)-[p]-(a:Person) RETURN n,p,a;');
 
@@ -277,7 +277,7 @@ describe('Mongo4J Updating', () => {
 
       expect(neo_stats.relationshipsCreated).to.equal(2);
       expect(neo_del_stats.relationshipsDeleted).to.equal(2);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       done();
     });
@@ -329,7 +329,7 @@ describe('Mongo4J Updating', () => {
 
       expect(neo_stats.relationshipsCreated).to.equal(1);
       expect(neo_del_stats.relationshipsDeleted).to.equal(1);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       return session.run('MATCH (n:Class)-[p]-(a:Person) RETURN n,p,a;');
 
@@ -411,7 +411,7 @@ describe('Mongo4J Updating', () => {
 
       expect(neo_stats.relationshipsCreated).to.equal(2);
       expect(neo_del_stats.relationshipsDeleted).to.equal(2);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       return session.run('MATCH (h:Class {title: \'Chemistry\'})-[pa]-(a:Person)-[pb]-(d:Class) RETURN h,pa,a,pb,d;');
 
@@ -461,7 +461,7 @@ describe('Mongo4J Updating', () => {
       const neo_stats = getStats(results);
 
       expect(neo_stats.propertiesSet).to.be.at.least(1);
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
 
       return session.run('MATCH (n:Person {m_id : $id})-[p]-(a:Address) RETURN a;', {id: neil._id.toString()});
 
@@ -550,7 +550,7 @@ describe('Mongo4J Updating', () => {
       const neo_del_stats = getStats(results, true);
       const neo_stats = getStats(results);
 
-      expect(results[0].ok).to.equal(1);
+      expect(results[0].acknowledged).to.be.true;
       expect(neo_stats.propertiesSet).to.be.at.least(1);
       expect(neo_stats.relationshipsCreated).to.equal(3);
       expect(neo_del_stats.relationshipsDeleted).to.equal(3);
