@@ -47,11 +47,11 @@
   "author": "Sven Westerlaken",
   "license": "MIT",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "mongoose": "^5.13.9",
+    "mongoose": "^6.0.4",
     "neo4j-driver": "^4.3.3",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^8.0.0"
