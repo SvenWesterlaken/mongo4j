@@ -389,7 +389,7 @@ Person.cypherQuery('MATCH (n:Person) RETURN n;', { sub: true })
 ```
 
 ## Examples
-For examples, refer to the [test cases](test/functions/) for now.
+For examples, refer to the [test cases](test/functions/) & [test models](test/models) for now.
 
 ## FAQ
 ### Why is there a deletion query in the update function?
