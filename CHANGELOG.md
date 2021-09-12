@@ -1,3 +1,11 @@
+# [4.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.11...v4.0.0) (2021-09-12)
+
+
+### Bug Fixes
+
+* **mongoose:** upgrade mongoose to major version 6 ([da4807e](https://github.com/SvenWesterlaken/mongo4j/commit/da4807ee2529a595a85d5c52afe54a0360ea5600))
+* **packages:** npm audit to fix vulnerabilities ([c71685b](https://github.com/SvenWesterlaken/mongo4j/commit/c71685b595e2fc912c0b04e4d237ad2bee978809))
+
 ## [3.1.11](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.10...v3.1.11) (2021-04-16)
 
 
