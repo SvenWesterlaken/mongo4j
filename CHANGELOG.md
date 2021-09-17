@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.0...v4.0.1) (2021-09-17)
+
+
+### Bug Fixes
+
+* upgrade mongoose from 6.0.5 to 6.0.6 ([b326bff](https://github.com/SvenWesterlaken/mongo4j/commit/b326bffb3c26f70509f6db771a2822878fb335c4))
+
 # [4.0.0](https://github.com/SvenWesterlaken/mongo4j/compare/v3.1.11...v4.0.0) (2021-09-12)
 
 
