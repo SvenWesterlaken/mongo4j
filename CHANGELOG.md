@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.1...v4.0.2) (2021-11-20)
+
+
+### Bug Fixes
+
+* **packages:** update package versions ([636a19e](https://github.com/SvenWesterlaken/mongo4j/commit/636a19ec31aa43180e1ea05e24554b529fab1f03))
+
 ## [4.0.1](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.0...v4.0.1) (2021-09-17)
 
 
