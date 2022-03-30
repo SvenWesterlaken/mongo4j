@@ -1,3 +1,16 @@
+## [4.0.3](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.2...v4.0.3) (2022-03-30)
+
+
+### Bug Fixes
+
+* **node:** add back older versions ([b25ae6c](https://github.com/SvenWesterlaken/mongo4j/commit/b25ae6cb62a7ec20fc93491e58a8453f679cf83c))
+* **node:** remove version 18 for now ([fa57632](https://github.com/SvenWesterlaken/mongo4j/commit/fa57632ea631d525fc0ba214d2d74f569c6621f0))
+* **npm:** also force install on dry release ([5420360](https://github.com/SvenWesterlaken/mongo4j/commit/5420360a994db2489e60c31e6ced79c2baab114a))
+* **npm:** force install ([1998efc](https://github.com/SvenWesterlaken/mongo4j/commit/1998efc01693086c9b86c067e46faa74d94e8801))
+* **packages:** update packages ([8f304c0](https://github.com/SvenWesterlaken/mongo4j/commit/8f304c077a22f1fff7689707b584650c627ad370))
+* **packages:** update packages with vulnarabilities ([7b563c9](https://github.com/SvenWesterlaken/mongo4j/commit/7b563c9efbc33feaf2c711a92528c7971752dd36))
+* **release:** remove old node versions & add node v18.x ([6e53640](https://github.com/SvenWesterlaken/mongo4j/commit/6e53640695e46f868ebd44f81998b54d63cbe4e3))
+
 ## [4.0.2](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.1...v4.0.2) (2021-11-20)
 
 
