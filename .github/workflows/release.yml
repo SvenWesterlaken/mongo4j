@@ -82,7 +82,7 @@ jobs:
         mongodb-version: 4.2
 
     - name: Install
-      run: npm i
+      run: npm i -f
 
     - name: Release (dry)
       run: npm run semantic-release-dry
