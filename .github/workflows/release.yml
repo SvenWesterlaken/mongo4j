@@ -43,7 +43,7 @@ jobs:
 
     # Install package dependencies
     - name: Install
-      run: npm install
+      run: npm i -f
 
     # Run tests
     - name: Test
@@ -82,7 +82,7 @@ jobs:
         mongodb-version: 4.2
 
     - name: Install
-      run: npm i
+      run: npm i -f
 
     - name: Release (dry)
       run: npm run semantic-release-dry
@@ -128,7 +128,7 @@ jobs:
         mongodb-version: 4.2
 
     - name: Install
-      run: npm i
+      run: npm i -f
 
     - name: Release
       run: npm run semantic-release && npm run coveralls
