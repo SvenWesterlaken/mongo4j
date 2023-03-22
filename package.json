@@ -52,7 +52,7 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "mongoose": "^6.2.9",
-    "neo4j-driver": "^4.4.1",
+    "neo4j-driver": "^4.4.6",
     "parse-neo4j": "^0.6.11",
     "pluralize": "^8.0.0"
   },
