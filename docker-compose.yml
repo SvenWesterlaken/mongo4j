@@ -23,6 +23,7 @@ services:
       - 7687:7687
     environment:
       NEO4J_AUTH: neo4j/new
+      NEO4J_dbms_security_auth__minimum__password__length: 3
 
   mongodb:
     image: mongo
