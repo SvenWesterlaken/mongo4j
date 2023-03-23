@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/SvenWesterlaken/mongo4j/compare/v4.1.0...v4.1.1) (2023-03-23)
+
+
+### Bug Fixes
+
+* **ci:** apply password length to release job ([2804bf9](https://github.com/SvenWesterlaken/mongo4j/commit/2804bf9bfb3302c122f011be48f94a8821398887))
+
 # [4.1.0](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.3...v4.1.0) (2023-03-23)
 
 
