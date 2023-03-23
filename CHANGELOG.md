@@ -1,3 +1,23 @@
+# [4.1.0](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.3...v4.1.0) (2023-03-23)
+
+
+### Bug Fixes
+
+* **ci:** add min password length env for neo4j also to ci pipeline ([169fc32](https://github.com/SvenWesterlaken/mongo4j/commit/169fc32028e334ec7ba7919b3b34516905d304dd))
+* **docker:** set min password length to 3 for neo4j docker container ([851e661](https://github.com/SvenWesterlaken/mongo4j/commit/851e66151e2d3c00e32a313271e5ad97b11c945f))
+* **npm:** update packages & lockfile version ([ccea566](https://github.com/SvenWesterlaken/mongo4j/commit/ccea566bc6a9007d1cfeb29f3a36ed5f2d3b3aa9))
+* package.json & package-lock.json to reduce vulnerabilities ([f1ce469](https://github.com/SvenWesterlaken/mongo4j/commit/f1ce469cd414bbd70e832ee5c8c4d3421b9b1e50))
+* upgrade mongoose from 6.2.8 to 6.2.9 ([99b3a81](https://github.com/SvenWesterlaken/mongo4j/commit/99b3a81877a6b73db732b45773eb1c518318b017))
+* upgrade neo4j-driver from 4.4.5 to 4.4.6 ([33e0c7c](https://github.com/SvenWesterlaken/mongo4j/commit/33e0c7c577adaf3bd1883260193b3e9487f81fe1))
+
+
+### Features
+
+* **ci:** add back version 12 to pipeline ([b47257f](https://github.com/SvenWesterlaken/mongo4j/commit/b47257f7c0e923f04e94af9793c9272fd840ee0c))
+* **ci:** add node version 20 to pipeline ([7d6c12a](https://github.com/SvenWesterlaken/mongo4j/commit/7d6c12a83d9d506d1dbe339feed4436549e7c1de))
+* **ci:** remove node version 12 & add version 18 ([65af82b](https://github.com/SvenWesterlaken/mongo4j/commit/65af82b817438d6fde9b062bfa7aa059685603d6))
+* **ci:** remove node version 20 to pipeline ([e1fa8a8](https://github.com/SvenWesterlaken/mongo4j/commit/e1fa8a81902bb0f57953a02d99eab71b0a3896a5))
+
 ## [4.0.3](https://github.com/SvenWesterlaken/mongo4j/compare/v4.0.2...v4.0.3) (2022-03-30)
 
 
