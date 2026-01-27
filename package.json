@@ -50,7 +50,7 @@
     "node": ">=12"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mongoose": "^6.4.6",
     "neo4j-driver": "^4.4.6",
     "parse-neo4j": "^0.6.11",
